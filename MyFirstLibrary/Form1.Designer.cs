@@ -30,45 +30,62 @@
         {
             components = new System.ComponentModel.Container();
             groupBox1 = new GroupBox();
+            yearNumericUpDown = new NumericUpDown();
+            idNumericUpDown = new NumericUpDown();
             searchButton = new Button();
             label5 = new Label();
             label4 = new Label();
             publishHouseTextBox = new TextBox();
-            publishYearTextBox = new TextBox();
             label3 = new Label();
             label2 = new Label();
             label1 = new Label();
             authorTextBox = new TextBox();
             nameTextBox = new TextBox();
-            idTextBox = new TextBox();
             resultsListBox = new ListBox();
+            bookBindingSource = new BindingSource(components);
             addButton = new Button();
             removeButton = new Button();
             editButton = new Button();
-            bookBindingSource = new BindingSource(components);
             groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)yearNumericUpDown).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)idNumericUpDown).BeginInit();
             ((System.ComponentModel.ISupportInitialize)bookBindingSource).BeginInit();
             SuspendLayout();
             // 
             // groupBox1
             // 
             groupBox1.Anchor = AnchorStyles.None;
+            groupBox1.Controls.Add(yearNumericUpDown);
+            groupBox1.Controls.Add(idNumericUpDown);
             groupBox1.Controls.Add(searchButton);
             groupBox1.Controls.Add(label5);
             groupBox1.Controls.Add(label4);
             groupBox1.Controls.Add(publishHouseTextBox);
-            groupBox1.Controls.Add(publishYearTextBox);
             groupBox1.Controls.Add(label3);
             groupBox1.Controls.Add(label2);
             groupBox1.Controls.Add(label1);
             groupBox1.Controls.Add(authorTextBox);
             groupBox1.Controls.Add(nameTextBox);
-            groupBox1.Controls.Add(idTextBox);
             groupBox1.Location = new Point(187, 9);
             groupBox1.Name = "groupBox1";
             groupBox1.Size = new Size(426, 214);
             groupBox1.TabIndex = 0;
             groupBox1.TabStop = false;
+            // 
+            // yearNumericUpDown
+            // 
+            yearNumericUpDown.Location = new Point(94, 110);
+            yearNumericUpDown.Maximum = new decimal(new int[] { 10000, 0, 0, 0 });
+            yearNumericUpDown.Name = "yearNumericUpDown";
+            yearNumericUpDown.Size = new Size(310, 23);
+            yearNumericUpDown.TabIndex = 11;
+            // 
+            // idNumericUpDown
+            // 
+            idNumericUpDown.Location = new Point(94, 25);
+            idNumericUpDown.Name = "idNumericUpDown";
+            idNumericUpDown.Size = new Size(310, 23);
+            idNumericUpDown.TabIndex = 5;
             // 
             // searchButton
             // 
@@ -78,6 +95,7 @@
             searchButton.TabIndex = 10;
             searchButton.Text = "Пошук";
             searchButton.UseVisualStyleBackColor = true;
+            searchButton.Click += searchButton_Click;
             // 
             // label5
             // 
@@ -103,13 +121,6 @@
             publishHouseTextBox.Name = "publishHouseTextBox";
             publishHouseTextBox.Size = new Size(310, 23);
             publishHouseTextBox.TabIndex = 7;
-            // 
-            // publishYearTextBox
-            // 
-            publishYearTextBox.Location = new Point(94, 109);
-            publishYearTextBox.Name = "publishYearTextBox";
-            publishYearTextBox.Size = new Size(310, 23);
-            publishYearTextBox.TabIndex = 6;
             // 
             // label3
             // 
@@ -152,13 +163,6 @@
             nameTextBox.Size = new Size(310, 23);
             nameTextBox.TabIndex = 1;
             // 
-            // idTextBox
-            // 
-            idTextBox.Location = new Point(94, 22);
-            idTextBox.Name = "idTextBox";
-            idTextBox.Size = new Size(310, 23);
-            idTextBox.TabIndex = 0;
-            // 
             // resultsListBox
             // 
             resultsListBox.Anchor = AnchorStyles.None;
@@ -171,6 +175,10 @@
             resultsListBox.Size = new Size(237, 124);
             resultsListBox.TabIndex = 1;
             resultsListBox.ValueMember = "Id";
+            // 
+            // bookBindingSource
+            // 
+            bookBindingSource.DataSource = typeof(Book);
             // 
             // addButton
             // 
@@ -202,10 +210,6 @@
             editButton.Text = "Редагувати";
             editButton.UseVisualStyleBackColor = true;
             // 
-            // bookBindingSource
-            // 
-            bookBindingSource.DataSource = typeof(Book);
-            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -222,6 +226,8 @@
             Load += Form1_Load;
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)yearNumericUpDown).EndInit();
+            ((System.ComponentModel.ISupportInitialize)idNumericUpDown).EndInit();
             ((System.ComponentModel.ISupportInitialize)bookBindingSource).EndInit();
             ResumeLayout(false);
         }
@@ -234,7 +240,6 @@
         private Label label1;
         private TextBox authorTextBox;
         private TextBox nameTextBox;
-        private TextBox idTextBox;
         private Label label5;
         private Label label4;
         private TextBox publishHouseTextBox;
@@ -245,5 +250,7 @@
         private Button removeButton;
         private Button editButton;
         private BindingSource bookBindingSource;
+        private NumericUpDown idNumericUpDown;
+        private NumericUpDown yearNumericUpDown;
     }
 }
