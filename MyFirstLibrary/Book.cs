@@ -10,15 +10,19 @@ namespace MyFirstLibrary
     {
         public int Id { get; set; }
         public string Title { get; set; }
-        public string Autor { get; set; }
-        public string DataOfPublic { get; set; }
+        public string Author { get; set; }
+        public DateOnly DateOfPublish { get; set; }
+        public string PublishHouse { get; set; }
 
-        public Book(int id, string title, string autor, string dataOfPublic)
+        public Book(int id, string title, string author, DateOnly dateOfPublish, string publishHouse)
         {
             Id = id;
             Title = title;
-            Autor = autor;
-            DataOfPublic = dataOfPublic;
+            Author = author;
+            DateOfPublish = dateOfPublish;
+            PublishHouse = publishHouse;
         }
+
+        
     }
 }
