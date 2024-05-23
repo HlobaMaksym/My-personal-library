@@ -45,15 +45,32 @@ namespace MyFirstLibrary
                 year, publishHouseTextBox.Text);
         }
 
-        private void editButton_Click(object sender, EventArgs e)
+        private Book? GetSelectedBook()
         {
             Book? selectedBook = bookBindingSource.Current as Book;
-            if (selectedBook == null) 
+            if (selectedBook == null)
             {
                 MessageBox.Show("Книга не обрана", "Сталася помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return null;
+            }
+            return selectedBook;
+        }
+
+        private void editButton_Click(object sender, EventArgs e)
+        {
+            Book? selectedBook = GetSelectedBook();
+            if(selectedBook == null)
+            {
                 return;
             }
             BookEditForm form = new BookEditForm(selectedBook.Id, library);
+            form.ShowDialog();
+            searchButton_Click(null, null);
+        }
+
+        private void addButton_Click(object sender, EventArgs e)
+        {
+            BookAddForm form = new BookAddForm(library);
             form.ShowDialog();
             searchButton_Click(null, null);
         }

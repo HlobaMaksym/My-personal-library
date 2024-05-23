@@ -56,5 +56,10 @@ namespace MyFirstLibrary
             var jsonString = File.ReadAllText(PATH);
             return JsonSerializer.Deserialize<Library>(jsonString) ?? new Library([]);
         }
+
+        public bool IsUniqueBook(Book book)
+        {
+            return Books.Where(b => b.Title == book.Title && b.Author == book.Author && b.Id != book.Id).Count() == 0;
+        }
     }
 }

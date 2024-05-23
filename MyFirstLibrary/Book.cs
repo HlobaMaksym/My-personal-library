@@ -34,6 +34,7 @@ namespace MyFirstLibrary
             Author = book.Author;
             DateOfPublish = book.DateOfPublish;
             PublishHouse = book.PublishHouse;
+            Count = book.Count;
         }
 
         public bool Validate()
@@ -68,6 +69,7 @@ namespace MyFirstLibrary
             Author = book.Author;
             DateOfPublish = book.DateOfPublish;
             PublishHouse = book.PublishHouse;
+            Count = book.Count;
         }
 
     }

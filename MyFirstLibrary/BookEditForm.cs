@@ -30,6 +30,7 @@ namespace MyFirstLibrary
             authorTextBox.Text = book.Author;
             dateOfPublishPicker.Value = book.DateOfPublish.ToDateTime(TimeOnly.MinValue);
             publishHouseTextBox.Text = book.PublishHouse;
+            countNumericUpDown.Value = book.Count;
         }
 
         private void UpdateBook()
@@ -38,13 +39,24 @@ namespace MyFirstLibrary
             book.Author = authorTextBox.Text;
             book.DateOfPublish = DateOnly.FromDateTime(dateOfPublishPicker.Value);
             book.PublishHouse = publishHouseTextBox.Text;
+            book.Count = (int)countNumericUpDown.Value;
         }
 
         private void saveButton_Click(object sender, EventArgs e)
         {
             UpdateBook();
+            if (countNumericUpDown.Text.Length == 0)
+            {
+                MessageBox.Show("Кількість не введено", "Сталася помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             if (!book.Validate())
             {
+                return;
+            }
+            if (!library.IsUniqueBook(book))
+            {
+                MessageBox.Show("Така книга вже існує", "Сталася помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             library.Edit(book);
