@@ -61,5 +61,10 @@ namespace MyFirstLibrary
         {
             return Books.Where(b => b.Title == book.Title && b.Author == book.Author && b.Id != book.Id).Count() == 0;
         }
+
+        public void DeleteBook(int id)
+        {
+            Books.RemoveAll(book => book.Id == id);
+        }
     }
 }

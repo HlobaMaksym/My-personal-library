@@ -200,6 +200,7 @@
             removeButton.TabIndex = 3;
             removeButton.Text = "Видалити";
             removeButton.UseVisualStyleBackColor = true;
+            removeButton.Click += removeButton_Click;
             // 
             // editButton
             // 

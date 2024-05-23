@@ -11,21 +11,10 @@ namespace MyFirstLibrary
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            //List<Book> book = new List<Book>();
-            //Book newBook1 = new Book(0, "test1", "author1", 
-            //    DateOnly.Parse("01.01.2021"), "house1");
-            //Book newBook2 = new Book(1, "test2", "author2", 
-            //    DateOnly.Parse("01.01.2022"), "house2");
-            //Book newBook3 = new Book(2, "test3", "author3", 
-            //    DateOnly.Parse("01.01.2023"), "house3");
-            //book.Add(newBook1);
-            //book.Add(newBook2);
-            //book.Add(newBook3);
-            //library = new Library(book);
-            //library.SaveData();
             library = Library.LoadData();
             idNumericUpDown.Text = "";
             yearNumericUpDown.Text = "";
+            searchButton_Click(null, null);
         }
 
         private void searchButton_Click(object sender, EventArgs e)
@@ -59,7 +48,7 @@ namespace MyFirstLibrary
         private void editButton_Click(object sender, EventArgs e)
         {
             Book? selectedBook = GetSelectedBook();
-            if(selectedBook == null)
+            if (selectedBook == null)
             {
                 return;
             }
@@ -73,6 +62,22 @@ namespace MyFirstLibrary
             BookAddForm form = new BookAddForm(library);
             form.ShowDialog();
             searchButton_Click(null, null);
+        }
+
+        private void removeButton_Click(object sender, EventArgs e)
+        {
+            Book? selectedBook = GetSelectedBook();
+            if (selectedBook == null)
+            {
+                return;
+            }
+            DialogResult result = MessageBox.Show("Ви точно хочете видалити цю книгу?", "Пітвердження", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
+            {
+                library.DeleteBook(selectedBook.Id);
+                library.SaveData();
+                searchButton_Click(null, null);
+            }
         }
     }
 }
