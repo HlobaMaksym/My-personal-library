@@ -32,7 +32,7 @@ namespace MyFirstLibrary
         {
             int? id = null;
             int? year = null;
-            if(idNumericUpDown.Text != "")
+            if (idNumericUpDown.Text != "")
             {
                 id = (int)idNumericUpDown.Value;
             }
@@ -40,9 +40,22 @@ namespace MyFirstLibrary
             {
                 year = (int)yearNumericUpDown.Value;
             }
-            bookBindingSource.DataSource = library.Search(id, 
-                nameTextBox.Text, authorTextBox.Text, 
+            bookBindingSource.DataSource = library.Search(id,
+                nameTextBox.Text, authorTextBox.Text,
                 year, publishHouseTextBox.Text);
+        }
+
+        private void editButton_Click(object sender, EventArgs e)
+        {
+            Book? selectedBook = bookBindingSource.Current as Book;
+            if (selectedBook == null) 
+            {
+                MessageBox.Show("Книга не обрана", "Сталася помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            BookEditForm form = new BookEditForm(selectedBook.Id, library);
+            form.ShowDialog();
+            searchButton_Click(null, null);
         }
     }
 }

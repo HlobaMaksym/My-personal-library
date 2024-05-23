@@ -27,7 +27,22 @@ namespace MyFirstLibrary
                 && (string.IsNullOrEmpty(author) || book.Author.Contains(author, StringComparison.OrdinalIgnoreCase)) &&
                 (!yearOfPublish.HasValue || book.DateOfPublish.Year == yearOfPublish.Value) &&
                 (string.IsNullOrEmpty(publishHouse) || book.PublishHouse.Contains(publishHouse, StringComparison.OrdinalIgnoreCase))
-            ).ToList();
+            ).OrderBy(book => book.Title).ToList();
+        }
+
+        public void Edit(Book book) 
+        {
+            Book? originalBook = Search(book.Id).FirstOrDefault();
+            if(originalBook == null) 
+            {
+                return;
+            }
+            originalBook.Update(book);
+        }
+
+        public void Add(Book book)
+        {
+            Books.Add(book);
         }
 
         public void SaveData()

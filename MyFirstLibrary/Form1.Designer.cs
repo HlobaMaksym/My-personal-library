@@ -209,6 +209,7 @@
             editButton.TabIndex = 4;
             editButton.Text = "Редагувати";
             editButton.UseVisualStyleBackColor = true;
+            editButton.Click += editButton_Click;
             // 
             // Form1
             // 
