@@ -16,6 +16,7 @@ namespace MyFirstLibrary
         public string PublishHouse { get; set; }
         public int Count { get; set; }
         private const int FIRST_BOOK_PUBLISH_YEAR = 1574;
+        public Color TitleColor => Count == 0 ? Color.DarkGray : Color.Black;
 
         [JsonConstructor]
         public Book(int id, string title, string author, DateOnly dateOfPublish, string publishHouse, int count)

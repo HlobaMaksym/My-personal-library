@@ -1,3 +1,5 @@
+using System.Windows.Forms;
+
 namespace MyFirstLibrary
 {
     public partial class Form1 : Form
@@ -14,6 +16,7 @@ namespace MyFirstLibrary
             library = Library.LoadData();
             idNumericUpDown.Text = "";
             yearNumericUpDown.Text = "";
+            resultsListBox.DrawMode = DrawMode.OwnerDrawFixed;
             searchButton_Click(null, null);
         }
 
@@ -71,6 +74,11 @@ namespace MyFirstLibrary
             {
                 return;
             }
+            if (library.IsBookTaken(selectedBook))
+            {
+                MessageBox.Show("Не всі книги були повернені користувачами. Видалення неможливе", "Сталася помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             DialogResult result = MessageBox.Show("Ви точно хочете видалити цю книгу?", "Пітвердження", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (result == DialogResult.Yes)
             {
@@ -78,6 +86,53 @@ namespace MyFirstLibrary
                 library.SaveData();
                 searchButton_Click(null, null);
             }
+        }
+
+        private void takeButton_Click(object sender, EventArgs e)
+        {
+            Book? selectedBook = GetSelectedBook();
+            if (selectedBook == null)
+            {
+                return;
+            }
+            if (selectedBook.Count == 0)
+            {
+                MessageBox.Show("Наразі даної книги немає", "Сталася помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            DialogResult result = MessageBox.Show("Ви точно хочете взяти цю книгу?", "Пітвердження", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
+            {
+                library.TakeBook(selectedBook);
+                library.SaveData();
+                MessageBox.Show("Ви успішно взяли книгу", "Успіх", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private void resultsListBox_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            e.DrawBackground();
+            e.DrawFocusRectangle();
+            int selectedIndex = resultsListBox.SelectedIndex;
+            Color color = Color.White;
+            if (e.Index == -1)
+            {
+                return;
+            }
+            Book? item = resultsListBox.Items[e.Index] as Book;
+            if (item != null)
+            {
+                if (selectedIndex != e.Index)
+                {
+                    color = item.TitleColor;
+                }
+                e.Graphics.DrawString(item.Title, resultsListBox.Font, new SolidBrush(color), 0, e.Index * resultsListBox.ItemHeight);
+            }
+        }
+
+        private void resultsListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            resultsListBox.Invalidate();
         }
     }
 }

@@ -12,11 +12,17 @@ namespace MyFirstLibrary
     {
         [JsonInclude]
         public List<Book> Books;
+        [JsonInclude]
+        public List<User> Users;
+        [JsonInclude]
+        public int? LoggedUserId;
 
         private const string PATH = "Library.txt";
-        public Library(List<Book> books)
+        public Library(List<Book> books, List<User> users, int? loggedUserId)
         {
             Books = books;
+            Users = users;
+            LoggedUserId = loggedUserId;
         }
 
         public List<Book> Search(int? id = null, string title = null, string author = null, int? yearOfPublish = null, string publishHouse = null)
@@ -40,7 +46,7 @@ namespace MyFirstLibrary
             originalBook.Update(book);
         }
 
-        public void Add(Book book)
+        public void AddBook(Book book)
         {
             Books.Add(book);
         }
@@ -53,8 +59,22 @@ namespace MyFirstLibrary
 
         public static Library LoadData()
         {
-            var jsonString = File.ReadAllText(PATH);
-            return JsonSerializer.Deserialize<Library>(jsonString) ?? new Library([]);
+            var jsonString = "";
+            try
+            {
+                jsonString = File.ReadAllText(PATH);
+            }
+            catch(FileNotFoundException exception)
+            {
+
+            }
+            User defoltUser = new User(1, "Admin", "Nimda", [], true);
+            Library emptyLibrary = new Library([], [defoltUser], defoltUser.Id);
+            if(jsonString == "")
+            {
+                return emptyLibrary;
+            }
+            return JsonSerializer.Deserialize<Library>(jsonString) ?? emptyLibrary;
         }
 
         public bool IsUniqueBook(Book book)
@@ -65,6 +85,27 @@ namespace MyFirstLibrary
         public void DeleteBook(int id)
         {
             Books.RemoveAll(book => book.Id == id);
+        }
+
+        public User? GetLoggedUser()
+        {
+            return Users.FirstOrDefault(user => user.Id == LoggedUserId);
+        }
+
+        public void TakeBook(Book book)
+        {
+            User? user = GetLoggedUser();
+            if(user == null || book.Count == 0)
+            {
+                return;
+            }
+            book.Count--;
+            user.TakeBook(book.Id);
+        }
+
+        public bool IsBookTaken(Book book)
+        {
+            return Users.Any(user => user.TakenBookIds.Contains(book.Id));
         }
     }
 }

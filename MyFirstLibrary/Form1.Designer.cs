@@ -46,6 +46,7 @@
             addButton = new Button();
             removeButton = new Button();
             editButton = new Button();
+            takeButton = new Button();
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)yearNumericUpDown).BeginInit();
             ((System.ComponentModel.ISupportInitialize)idNumericUpDown).BeginInit();
@@ -175,6 +176,8 @@
             resultsListBox.Size = new Size(237, 124);
             resultsListBox.TabIndex = 1;
             resultsListBox.ValueMember = "Id";
+            resultsListBox.DrawItem += resultsListBox_DrawItem;
+            resultsListBox.SelectedIndexChanged += resultsListBox_SelectedIndexChanged;
             // 
             // bookBindingSource
             // 
@@ -213,11 +216,22 @@
             editButton.UseVisualStyleBackColor = true;
             editButton.Click += editButton_Click;
             // 
+            // takeButton
+            // 
+            takeButton.Location = new Point(294, 370);
+            takeButton.Name = "takeButton";
+            takeButton.Size = new Size(129, 23);
+            takeButton.TabIndex = 12;
+            takeButton.Text = "Взяти книгу";
+            takeButton.UseVisualStyleBackColor = true;
+            takeButton.Click += takeButton_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(takeButton);
             Controls.Add(editButton);
             Controls.Add(removeButton);
             Controls.Add(addButton);
@@ -255,5 +269,6 @@
         private BindingSource bookBindingSource;
         private NumericUpDown idNumericUpDown;
         private NumericUpDown yearNumericUpDown;
+        private Button takeButton;
     }
 }

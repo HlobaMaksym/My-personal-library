@@ -36,7 +36,7 @@ namespace MyFirstLibrary
                 MessageBox.Show("Така книга вже існує", "Сталася помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            library.Add(book);
+            library.AddBook(book);
             library.SaveData();
             Close();
         }
