@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             groupBox1 = new GroupBox();
+            countNumericUpDown = new NumericUpDown();
+            label6 = new Label();
             dateOfPublishPicker = new DateTimePicker();
             idNumericUpDown = new NumericUpDown();
             saveButton = new Button();
@@ -40,11 +42,9 @@
             label1 = new Label();
             authorTextBox = new TextBox();
             nameTextBox = new TextBox();
-            countNumericUpDown = new NumericUpDown();
-            label6 = new Label();
             groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)idNumericUpDown).BeginInit();
             ((System.ComponentModel.ISupportInitialize)countNumericUpDown).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)idNumericUpDown).BeginInit();
             SuspendLayout();
             // 
             // groupBox1
@@ -69,6 +69,23 @@
             groupBox1.TabIndex = 1;
             groupBox1.TabStop = false;
             // 
+            // countNumericUpDown
+            // 
+            countNumericUpDown.Location = new Point(94, 167);
+            countNumericUpDown.Maximum = new decimal(new int[] { 1000, 0, 0, 0 });
+            countNumericUpDown.Name = "countNumericUpDown";
+            countNumericUpDown.Size = new Size(162, 23);
+            countNumericUpDown.TabIndex = 13;
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Location = new Point(35, 171);
+            label6.Name = "label6";
+            label6.Size = new Size(56, 15);
+            label6.TabIndex = 12;
+            label6.Text = "Кількість";
+            // 
             // dateOfPublishPicker
             // 
             dateOfPublishPicker.Location = new Point(94, 109);
@@ -80,6 +97,7 @@
             // 
             idNumericUpDown.Enabled = false;
             idNumericUpDown.Location = new Point(94, 25);
+            idNumericUpDown.Maximum = new decimal(new int[] { 10000, 0, 0, 0 });
             idNumericUpDown.Name = "idNumericUpDown";
             idNumericUpDown.Size = new Size(162, 23);
             idNumericUpDown.TabIndex = 5;
@@ -150,7 +168,7 @@
             // authorTextBox
             // 
             authorTextBox.Location = new Point(94, 80);
-            authorTextBox.MaxLength = 30;
+            authorTextBox.MaxLength = 50;
             authorTextBox.Name = "authorTextBox";
             authorTextBox.Size = new Size(162, 23);
             authorTextBox.TabIndex = 2;
@@ -163,22 +181,6 @@
             nameTextBox.Size = new Size(162, 23);
             nameTextBox.TabIndex = 1;
             // 
-            // countNumericUpDown
-            // 
-            countNumericUpDown.Location = new Point(94, 167);
-            countNumericUpDown.Name = "countNumericUpDown";
-            countNumericUpDown.Size = new Size(162, 23);
-            countNumericUpDown.TabIndex = 13;
-            // 
-            // label6
-            // 
-            label6.AutoSize = true;
-            label6.Location = new Point(35, 171);
-            label6.Name = "label6";
-            label6.Size = new Size(56, 15);
-            label6.TabIndex = 12;
-            label6.Text = "Кількість";
-            // 
             // BookEditForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -190,8 +192,8 @@
             Text = "Редагувати книгу";
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)idNumericUpDown).EndInit();
             ((System.ComponentModel.ISupportInitialize)countNumericUpDown).EndInit();
+            ((System.ComponentModel.ISupportInitialize)idNumericUpDown).EndInit();
             ResumeLayout(false);
         }
 

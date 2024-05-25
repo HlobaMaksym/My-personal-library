@@ -49,6 +49,8 @@
             takeButton = new Button();
             menuStrip1 = new MenuStrip();
             takenBooksMenuItem = new ToolStripMenuItem();
+            logoutMenuItem = new ToolStripMenuItem();
+            nameMenuItem = new ToolStripMenuItem();
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)yearNumericUpDown).BeginInit();
             ((System.ComponentModel.ISupportInitialize)idNumericUpDown).BeginInit();
@@ -70,7 +72,7 @@
             groupBox1.Controls.Add(label1);
             groupBox1.Controls.Add(authorTextBox);
             groupBox1.Controls.Add(nameTextBox);
-            groupBox1.Location = new Point(187, 9);
+            groupBox1.Location = new Point(187, 27);
             groupBox1.Name = "groupBox1";
             groupBox1.Size = new Size(426, 214);
             groupBox1.TabIndex = 0;
@@ -87,6 +89,7 @@
             // idNumericUpDown
             // 
             idNumericUpDown.Location = new Point(94, 25);
+            idNumericUpDown.Maximum = new decimal(new int[] { 10000, 0, 0, 0 });
             idNumericUpDown.Name = "idNumericUpDown";
             idNumericUpDown.Size = new Size(310, 23);
             idNumericUpDown.TabIndex = 5;
@@ -122,6 +125,7 @@
             // publishHouseTextBox
             // 
             publishHouseTextBox.Location = new Point(94, 138);
+            publishHouseTextBox.MaxLength = 50;
             publishHouseTextBox.Name = "publishHouseTextBox";
             publishHouseTextBox.Size = new Size(310, 23);
             publishHouseTextBox.TabIndex = 7;
@@ -156,6 +160,7 @@
             // authorTextBox
             // 
             authorTextBox.Location = new Point(94, 80);
+            authorTextBox.MaxLength = 50;
             authorTextBox.Name = "authorTextBox";
             authorTextBox.Size = new Size(310, 23);
             authorTextBox.TabIndex = 2;
@@ -163,6 +168,7 @@
             // nameTextBox
             // 
             nameTextBox.Location = new Point(94, 51);
+            nameTextBox.MaxLength = 50;
             nameTextBox.Name = "nameTextBox";
             nameTextBox.Size = new Size(310, 23);
             nameTextBox.TabIndex = 1;
@@ -174,7 +180,7 @@
             resultsListBox.DisplayMember = "Title";
             resultsListBox.FormattingEnabled = true;
             resultsListBox.ItemHeight = 15;
-            resultsListBox.Location = new Point(234, 240);
+            resultsListBox.Location = new Point(234, 251);
             resultsListBox.Name = "resultsListBox";
             resultsListBox.Size = new Size(237, 124);
             resultsListBox.TabIndex = 1;
@@ -189,7 +195,7 @@
             // addButton
             // 
             addButton.Anchor = AnchorStyles.None;
-            addButton.Location = new Point(492, 260);
+            addButton.Location = new Point(492, 271);
             addButton.Name = "addButton";
             addButton.Size = new Size(75, 23);
             addButton.TabIndex = 2;
@@ -200,7 +206,7 @@
             // removeButton
             // 
             removeButton.Anchor = AnchorStyles.None;
-            removeButton.Location = new Point(492, 289);
+            removeButton.Location = new Point(492, 300);
             removeButton.Name = "removeButton";
             removeButton.Size = new Size(75, 23);
             removeButton.TabIndex = 3;
@@ -211,7 +217,7 @@
             // editButton
             // 
             editButton.Anchor = AnchorStyles.None;
-            editButton.Location = new Point(492, 318);
+            editButton.Location = new Point(492, 329);
             editButton.Name = "editButton";
             editButton.Size = new Size(75, 23);
             editButton.TabIndex = 4;
@@ -221,7 +227,8 @@
             // 
             // takeButton
             // 
-            takeButton.Location = new Point(294, 370);
+            takeButton.Anchor = AnchorStyles.None;
+            takeButton.Location = new Point(294, 380);
             takeButton.Name = "takeButton";
             takeButton.Size = new Size(129, 23);
             takeButton.TabIndex = 12;
@@ -232,7 +239,7 @@
             // menuStrip1
             // 
             menuStrip1.BackColor = Color.White;
-            menuStrip1.Items.AddRange(new ToolStripItem[] { takenBooksMenuItem });
+            menuStrip1.Items.AddRange(new ToolStripItem[] { nameMenuItem, takenBooksMenuItem, logoutMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
             menuStrip1.Size = new Size(800, 24);
@@ -245,6 +252,20 @@
             takenBooksMenuItem.Size = new Size(75, 20);
             takenBooksMenuItem.Text = "Мої книги";
             takenBooksMenuItem.Click += takenBooksMenuItem_Click;
+            // 
+            // logoutMenuItem
+            // 
+            logoutMenuItem.Name = "logoutMenuItem";
+            logoutMenuItem.Size = new Size(105, 20);
+            logoutMenuItem.Text = "Вийти з акаунту";
+            logoutMenuItem.Click += logoutMenuItem_Click;
+            // 
+            // nameMenuItem
+            // 
+            nameMenuItem.Enabled = false;
+            nameMenuItem.Name = "nameMenuItem";
+            nameMenuItem.Size = new Size(60, 20);
+            nameMenuItem.Text = "Акаунт:";
             // 
             // Form1
             // 
@@ -297,5 +318,7 @@
         private Button takeButton;
         private MenuStrip menuStrip1;
         private ToolStripMenuItem takenBooksMenuItem;
+        private ToolStripMenuItem logoutMenuItem;
+        private ToolStripMenuItem nameMenuItem;
     }
 }

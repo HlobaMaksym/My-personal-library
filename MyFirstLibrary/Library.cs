@@ -123,5 +123,22 @@ namespace MyFirstLibrary
             user.ReturnBook(book.Id);
             book.Count++;
         }
+
+        public User? Login(string userName, string password)
+        {
+            return Users.Find(user => user.Name == userName && user.Password == password);
+        }
+
+        public User? Register(string userName, string password)
+        {
+            if(Users.Any(user => user.Name == userName))
+            {
+                return null;
+            }
+            int id = Users.Max(user => user.Id) + 1;
+            User user = new User(id, userName, password, [], false);
+            Users.Add(user);
+            return user;
+        }
     }
 }

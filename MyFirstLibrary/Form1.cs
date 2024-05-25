@@ -9,7 +9,8 @@ namespace MyFirstLibrary
             InitializeComponent();
         }
 
-        Library library;
+        private Library library;
+        public bool OpenLogin { get; private set; }
 
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -18,6 +19,11 @@ namespace MyFirstLibrary
             yearNumericUpDown.Text = "";
             resultsListBox.DrawMode = DrawMode.OwnerDrawFixed;
             searchButton_Click(null, null);
+            if(library.GetLoggedUser()?.IsAdmin == false)
+            {
+                HideAdminButtons();
+            }
+            nameMenuItem.Text += $" {library.GetLoggedUser()?.Name}";
         }
 
         private void searchButton_Click(object sender, EventArgs e)
@@ -145,6 +151,23 @@ namespace MyFirstLibrary
             TakenBooksForm takenBooksForm = new TakenBooksForm(library);
             takenBooksForm.ShowDialog();
             searchButton_Click(null, null);
+        }
+
+        private void logoutMenuItem_Click(object sender, EventArgs e)
+        {
+            library.LoggedUserId = null;
+            library.SaveData();
+            OpenLogin = true;
+            Close();
+        }
+
+        private void HideAdminButtons()
+        {
+            addButton.Visible = false;
+            editButton.Visible = false;
+            removeButton.Visible = false;
+            resultsListBox.Left = (ClientSize.Width - resultsListBox.Width) / 2;
+            takeButton.Left = (ClientSize.Width - takeButton.Width) / 2;
         }
     }
 }

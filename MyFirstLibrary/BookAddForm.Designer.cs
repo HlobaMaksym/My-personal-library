@@ -68,6 +68,7 @@
             // countNumericUpDown
             // 
             countNumericUpDown.Location = new Point(94, 150);
+            countNumericUpDown.Maximum = new decimal(new int[] { 1000, 0, 0, 0 });
             countNumericUpDown.Name = "countNumericUpDown";
             countNumericUpDown.Size = new Size(162, 23);
             countNumericUpDown.TabIndex = 13;
@@ -145,7 +146,7 @@
             // authorTextBox
             // 
             authorTextBox.Location = new Point(94, 63);
-            authorTextBox.MaxLength = 30;
+            authorTextBox.MaxLength = 50;
             authorTextBox.Name = "authorTextBox";
             authorTextBox.Size = new Size(162, 23);
             authorTextBox.TabIndex = 2;
