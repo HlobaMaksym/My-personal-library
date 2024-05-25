@@ -107,5 +107,21 @@ namespace MyFirstLibrary
         {
             return Users.Any(user => user.TakenBookIds.Contains(book.Id));
         }
+
+        public List<Book> GetUserTakenBooks(User user)
+        {
+            return user.TakenBookIds.Select(id => Books.Find(Book => Book.Id == id)!).ToList();
+        }
+
+        public void ReturnBook(Book book)
+        {
+            User? user = GetLoggedUser();
+            if (user == null)
+            {
+                return;
+            }
+            user.ReturnBook(book.Id);
+            book.Count++;
+        }
     }
 }

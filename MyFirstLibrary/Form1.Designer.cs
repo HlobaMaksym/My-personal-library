@@ -47,10 +47,13 @@
             removeButton = new Button();
             editButton = new Button();
             takeButton = new Button();
+            menuStrip1 = new MenuStrip();
+            takenBooksMenuItem = new ToolStripMenuItem();
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)yearNumericUpDown).BeginInit();
             ((System.ComponentModel.ISupportInitialize)idNumericUpDown).BeginInit();
             ((System.ComponentModel.ISupportInitialize)bookBindingSource).BeginInit();
+            menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
             // groupBox1
@@ -226,6 +229,23 @@
             takeButton.UseVisualStyleBackColor = true;
             takeButton.Click += takeButton_Click;
             // 
+            // menuStrip1
+            // 
+            menuStrip1.BackColor = Color.White;
+            menuStrip1.Items.AddRange(new ToolStripItem[] { takenBooksMenuItem });
+            menuStrip1.Location = new Point(0, 0);
+            menuStrip1.Name = "menuStrip1";
+            menuStrip1.Size = new Size(800, 24);
+            menuStrip1.TabIndex = 13;
+            menuStrip1.Text = "menuStrip1";
+            // 
+            // takenBooksMenuItem
+            // 
+            takenBooksMenuItem.Name = "takenBooksMenuItem";
+            takenBooksMenuItem.Size = new Size(75, 20);
+            takenBooksMenuItem.Text = "Мої книги";
+            takenBooksMenuItem.Click += takenBooksMenuItem_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -237,6 +257,8 @@
             Controls.Add(addButton);
             Controls.Add(resultsListBox);
             Controls.Add(groupBox1);
+            Controls.Add(menuStrip1);
+            MainMenuStrip = menuStrip1;
             MinimumSize = new Size(500, 489);
             Name = "Form1";
             Text = "Form1";
@@ -246,7 +268,10 @@
             ((System.ComponentModel.ISupportInitialize)yearNumericUpDown).EndInit();
             ((System.ComponentModel.ISupportInitialize)idNumericUpDown).EndInit();
             ((System.ComponentModel.ISupportInitialize)bookBindingSource).EndInit();
+            menuStrip1.ResumeLayout(false);
+            menuStrip1.PerformLayout();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -270,5 +295,7 @@
         private NumericUpDown idNumericUpDown;
         private NumericUpDown yearNumericUpDown;
         private Button takeButton;
+        private MenuStrip menuStrip1;
+        private ToolStripMenuItem takenBooksMenuItem;
     }
 }

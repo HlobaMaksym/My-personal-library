@@ -100,6 +100,11 @@ namespace MyFirstLibrary
                 MessageBox.Show("Наразі даної книги немає", "Сталася помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+            if (library.GetLoggedUser()?.IsBookTaken(selectedBook.Id) == true)
+            {
+                MessageBox.Show("Ви не можете взяти більше одного примірника цієї книги", "Сталася помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             DialogResult result = MessageBox.Show("Ви точно хочете взяти цю книгу?", "Пітвердження", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (result == DialogResult.Yes)
             {
@@ -133,6 +138,13 @@ namespace MyFirstLibrary
         private void resultsListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             resultsListBox.Invalidate();
+        }
+
+        private void takenBooksMenuItem_Click(object sender, EventArgs e)
+        {
+            TakenBooksForm takenBooksForm = new TakenBooksForm(library);
+            takenBooksForm.ShowDialog();
+            searchButton_Click(null, null);
         }
     }
 }

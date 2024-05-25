@@ -25,5 +25,15 @@ namespace MyFirstLibrary
         {
             TakenBookIds.Add(id);
         }
+
+        public bool IsBookTaken(int id)
+        {
+            return TakenBookIds.Contains(id);
+        }
+
+        public void ReturnBook(int id)
+        {
+            TakenBookIds.Remove(id);
+        }
     }
 }
