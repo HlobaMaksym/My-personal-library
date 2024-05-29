@@ -7,6 +7,7 @@ namespace MyFirstLibrary
         public Form1()
         {
             InitializeComponent();
+
         }
 
         private Library library;
@@ -17,9 +18,8 @@ namespace MyFirstLibrary
             library = Library.LoadData();
             idNumericUpDown.Text = "";
             yearNumericUpDown.Text = "";
-            resultsListBox.DrawMode = DrawMode.OwnerDrawFixed;
             searchButton_Click(null, null);
-            if(library.GetLoggedUser()?.IsAdmin == false)
+            if (library.GetLoggedUser()?.IsAdmin == false)
             {
                 HideAdminButtons();
             }
@@ -48,7 +48,8 @@ namespace MyFirstLibrary
             Book? selectedBook = bookBindingSource.Current as Book;
             if (selectedBook == null)
             {
-                MessageBox.Show("Книга не обрана", "Сталася помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Книга не обрана", "Сталася помилка", 
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return null;
             }
             return selectedBook;
@@ -82,10 +83,12 @@ namespace MyFirstLibrary
             }
             if (library.IsBookTaken(selectedBook))
             {
-                MessageBox.Show("Не всі книги були повернені користувачами. Видалення неможливе", "Сталася помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Не всі книги були повернені користувачами. Видалення неможливе", 
+                    "Сталася помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            DialogResult result = MessageBox.Show("Ви точно хочете видалити цю книгу?", "Пітвердження", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            DialogResult result = MessageBox.Show("Ви точно хочете видалити цю книгу?", 
+                "Пітвердження", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (result == DialogResult.Yes)
             {
                 library.DeleteBook(selectedBook.Id);
@@ -103,47 +106,26 @@ namespace MyFirstLibrary
             }
             if (selectedBook.Count == 0)
             {
-                MessageBox.Show("Наразі даної книги немає", "Сталася помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Наразі даної книги немає", 
+                    "Сталася помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             if (library.GetLoggedUser()?.IsBookTaken(selectedBook.Id) == true)
             {
-                MessageBox.Show("Ви не можете взяти більше одного примірника цієї книги", "Сталася помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Ви не можете взяти більше одного примірника цієї книги", 
+                    "Сталася помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            DialogResult result = MessageBox.Show("Ви точно хочете взяти цю книгу?", "Пітвердження", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            DialogResult result = MessageBox.Show("Ви точно хочете взяти цю книгу?", 
+                "Пітвердження", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (result == DialogResult.Yes)
             {
                 library.TakeBook(selectedBook);
                 library.SaveData();
-                MessageBox.Show("Ви успішно взяли книгу", "Успіх", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                searchButton_Click(null, null);
+                MessageBox.Show("Ви успішно взяли книгу", 
+                    "Успіх", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-        }
-
-        private void resultsListBox_DrawItem(object sender, DrawItemEventArgs e)
-        {
-            e.DrawBackground();
-            e.DrawFocusRectangle();
-            int selectedIndex = resultsListBox.SelectedIndex;
-            Color color = Color.White;
-            if (e.Index == -1)
-            {
-                return;
-            }
-            Book? item = resultsListBox.Items[e.Index] as Book;
-            if (item != null)
-            {
-                if (selectedIndex != e.Index)
-                {
-                    color = item.TitleColor;
-                }
-                e.Graphics.DrawString(item.Title, resultsListBox.Font, new SolidBrush(color), 0, e.Index * resultsListBox.ItemHeight);
-            }
-        }
-
-        private void resultsListBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            resultsListBox.Invalidate();
         }
 
         private void takenBooksMenuItem_Click(object sender, EventArgs e)
@@ -155,10 +137,15 @@ namespace MyFirstLibrary
 
         private void logoutMenuItem_Click(object sender, EventArgs e)
         {
-            library.LoggedUserId = null;
-            library.SaveData();
-            OpenLogin = true;
-            Close();
+            DialogResult result = MessageBox.Show("Ви точно хочете вийти з акаунту?", 
+                "Пітвердження", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
+            {
+                library.LoggedUserId = null;
+                library.SaveData();
+                OpenLogin = true;
+                Close();
+            }
         }
 
         private void HideAdminButtons()
@@ -166,8 +153,13 @@ namespace MyFirstLibrary
             addButton.Visible = false;
             editButton.Visible = false;
             removeButton.Visible = false;
-            resultsListBox.Left = (ClientSize.Width - resultsListBox.Width) / 2;
+            resultsDataGridView.Left = (ClientSize.Width - resultsDataGridView.Width) / 2;
             takeButton.Left = (ClientSize.Width - takeButton.Width) / 2;
+        }
+
+        private void aboutProgramMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("   Розробник цієї програми Глоба Максим.\n   Програма являє собою зручний додаток для користування електронною бібліотекою. Дозволяє користувачеві шукати цікаві йому книжки за деякими критеріями та брати ці книжки з можливістю їх повертання. Для бібліотекаря (Адміна) доступні всі можливості, які доступні користувачеві, а також додаткові можливості, такі як: додавання, видалення та редагування книг.", "Про програму", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 }

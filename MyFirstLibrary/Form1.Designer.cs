@@ -41,21 +41,29 @@
             label1 = new Label();
             authorTextBox = new TextBox();
             nameTextBox = new TextBox();
-            resultsListBox = new ListBox();
             bookBindingSource = new BindingSource(components);
             addButton = new Button();
             removeButton = new Button();
             editButton = new Button();
             takeButton = new Button();
             menuStrip1 = new MenuStrip();
+            nameMenuItem = new ToolStripMenuItem();
             takenBooksMenuItem = new ToolStripMenuItem();
             logoutMenuItem = new ToolStripMenuItem();
-            nameMenuItem = new ToolStripMenuItem();
+            aboutProgramMenuItem = new ToolStripMenuItem();
+            countDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            publishHouseDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            dateOfPublishDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            authorDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            titleDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            idDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            resultsDataGridView = new DataGridView();
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)yearNumericUpDown).BeginInit();
             ((System.ComponentModel.ISupportInitialize)idNumericUpDown).BeginInit();
             ((System.ComponentModel.ISupportInitialize)bookBindingSource).BeginInit();
             menuStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)resultsDataGridView).BeginInit();
             SuspendLayout();
             // 
             // groupBox1
@@ -72,7 +80,7 @@
             groupBox1.Controls.Add(label1);
             groupBox1.Controls.Add(authorTextBox);
             groupBox1.Controls.Add(nameTextBox);
-            groupBox1.Location = new Point(187, 27);
+            groupBox1.Location = new Point(174, 27);
             groupBox1.Name = "groupBox1";
             groupBox1.Size = new Size(426, 214);
             groupBox1.TabIndex = 0;
@@ -84,7 +92,7 @@
             yearNumericUpDown.Maximum = new decimal(new int[] { 10000, 0, 0, 0 });
             yearNumericUpDown.Name = "yearNumericUpDown";
             yearNumericUpDown.Size = new Size(310, 23);
-            yearNumericUpDown.TabIndex = 11;
+            yearNumericUpDown.TabIndex = 3;
             // 
             // idNumericUpDown
             // 
@@ -92,14 +100,14 @@
             idNumericUpDown.Maximum = new decimal(new int[] { 10000, 0, 0, 0 });
             idNumericUpDown.Name = "idNumericUpDown";
             idNumericUpDown.Size = new Size(310, 23);
-            idNumericUpDown.TabIndex = 5;
+            idNumericUpDown.TabIndex = 0;
             // 
             // searchButton
             // 
             searchButton.Location = new Point(329, 181);
             searchButton.Name = "searchButton";
             searchButton.Size = new Size(75, 23);
-            searchButton.TabIndex = 10;
+            searchButton.TabIndex = 5;
             searchButton.Text = "Пошук";
             searchButton.UseVisualStyleBackColor = true;
             searchButton.Click += searchButton_Click;
@@ -128,7 +136,7 @@
             publishHouseTextBox.MaxLength = 50;
             publishHouseTextBox.Name = "publishHouseTextBox";
             publishHouseTextBox.Size = new Size(310, 23);
-            publishHouseTextBox.TabIndex = 7;
+            publishHouseTextBox.TabIndex = 4;
             // 
             // label3
             // 
@@ -173,21 +181,6 @@
             nameTextBox.Size = new Size(310, 23);
             nameTextBox.TabIndex = 1;
             // 
-            // resultsListBox
-            // 
-            resultsListBox.Anchor = AnchorStyles.None;
-            resultsListBox.DataSource = bookBindingSource;
-            resultsListBox.DisplayMember = "Title";
-            resultsListBox.FormattingEnabled = true;
-            resultsListBox.ItemHeight = 15;
-            resultsListBox.Location = new Point(234, 251);
-            resultsListBox.Name = "resultsListBox";
-            resultsListBox.Size = new Size(237, 124);
-            resultsListBox.TabIndex = 1;
-            resultsListBox.ValueMember = "Id";
-            resultsListBox.DrawItem += resultsListBox_DrawItem;
-            resultsListBox.SelectedIndexChanged += resultsListBox_SelectedIndexChanged;
-            // 
             // bookBindingSource
             // 
             bookBindingSource.DataSource = typeof(Book);
@@ -195,10 +188,10 @@
             // addButton
             // 
             addButton.Anchor = AnchorStyles.None;
-            addButton.Location = new Point(492, 271);
+            addButton.Location = new Point(197, 380);
             addButton.Name = "addButton";
-            addButton.Size = new Size(75, 23);
-            addButton.TabIndex = 2;
+            addButton.Size = new Size(90, 23);
+            addButton.TabIndex = 6;
             addButton.Text = "Додати";
             addButton.UseVisualStyleBackColor = true;
             addButton.Click += addButton_Click;
@@ -206,10 +199,10 @@
             // removeButton
             // 
             removeButton.Anchor = AnchorStyles.None;
-            removeButton.Location = new Point(492, 300);
+            removeButton.Location = new Point(293, 380);
             removeButton.Name = "removeButton";
-            removeButton.Size = new Size(75, 23);
-            removeButton.TabIndex = 3;
+            removeButton.Size = new Size(90, 23);
+            removeButton.TabIndex = 7;
             removeButton.Text = "Видалити";
             removeButton.UseVisualStyleBackColor = true;
             removeButton.Click += removeButton_Click;
@@ -217,10 +210,10 @@
             // editButton
             // 
             editButton.Anchor = AnchorStyles.None;
-            editButton.Location = new Point(492, 329);
+            editButton.Location = new Point(389, 380);
             editButton.Name = "editButton";
-            editButton.Size = new Size(75, 23);
-            editButton.TabIndex = 4;
+            editButton.Size = new Size(90, 23);
+            editButton.TabIndex = 8;
             editButton.Text = "Редагувати";
             editButton.UseVisualStyleBackColor = true;
             editButton.Click += editButton_Click;
@@ -228,10 +221,10 @@
             // takeButton
             // 
             takeButton.Anchor = AnchorStyles.None;
-            takeButton.Location = new Point(294, 380);
+            takeButton.Location = new Point(485, 380);
             takeButton.Name = "takeButton";
-            takeButton.Size = new Size(129, 23);
-            takeButton.TabIndex = 12;
+            takeButton.Size = new Size(90, 23);
+            takeButton.TabIndex = 9;
             takeButton.Text = "Взяти книгу";
             takeButton.UseVisualStyleBackColor = true;
             takeButton.Click += takeButton_Click;
@@ -239,12 +232,19 @@
             // menuStrip1
             // 
             menuStrip1.BackColor = Color.White;
-            menuStrip1.Items.AddRange(new ToolStripItem[] { nameMenuItem, takenBooksMenuItem, logoutMenuItem });
+            menuStrip1.Items.AddRange(new ToolStripItem[] { nameMenuItem, takenBooksMenuItem, logoutMenuItem, aboutProgramMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
-            menuStrip1.Size = new Size(800, 24);
+            menuStrip1.Size = new Size(773, 24);
             menuStrip1.TabIndex = 13;
             menuStrip1.Text = "menuStrip1";
+            // 
+            // nameMenuItem
+            // 
+            nameMenuItem.Enabled = false;
+            nameMenuItem.Name = "nameMenuItem";
+            nameMenuItem.Size = new Size(60, 20);
+            nameMenuItem.Text = "Акаунт:";
             // 
             // takenBooksMenuItem
             // 
@@ -260,23 +260,93 @@
             logoutMenuItem.Text = "Вийти з акаунту";
             logoutMenuItem.Click += logoutMenuItem_Click;
             // 
-            // nameMenuItem
+            // aboutProgramMenuItem
             // 
-            nameMenuItem.Enabled = false;
-            nameMenuItem.Name = "nameMenuItem";
-            nameMenuItem.Size = new Size(60, 20);
-            nameMenuItem.Text = "Акаунт:";
+            aboutProgramMenuItem.Name = "aboutProgramMenuItem";
+            aboutProgramMenuItem.Size = new Size(99, 20);
+            aboutProgramMenuItem.Text = "Про програму";
+            aboutProgramMenuItem.Click += aboutProgramMenuItem_Click;
+            // 
+            // countDataGridViewTextBoxColumn
+            // 
+            countDataGridViewTextBoxColumn.DataPropertyName = "Count";
+            countDataGridViewTextBoxColumn.HeaderText = "Кількість";
+            countDataGridViewTextBoxColumn.Name = "countDataGridViewTextBoxColumn";
+            countDataGridViewTextBoxColumn.ReadOnly = true;
+            countDataGridViewTextBoxColumn.Width = 81;
+            // 
+            // publishHouseDataGridViewTextBoxColumn
+            // 
+            publishHouseDataGridViewTextBoxColumn.DataPropertyName = "PublishHouse";
+            publishHouseDataGridViewTextBoxColumn.HeaderText = "Видавництво";
+            publishHouseDataGridViewTextBoxColumn.Name = "publishHouseDataGridViewTextBoxColumn";
+            publishHouseDataGridViewTextBoxColumn.ReadOnly = true;
+            publishHouseDataGridViewTextBoxColumn.Width = 103;
+            // 
+            // dateOfPublishDataGridViewTextBoxColumn
+            // 
+            dateOfPublishDataGridViewTextBoxColumn.DataPropertyName = "DateOfPublish";
+            dateOfPublishDataGridViewTextBoxColumn.HeaderText = "Дата видання";
+            dateOfPublishDataGridViewTextBoxColumn.Name = "dateOfPublishDataGridViewTextBoxColumn";
+            dateOfPublishDataGridViewTextBoxColumn.ReadOnly = true;
+            dateOfPublishDataGridViewTextBoxColumn.Width = 105;
+            // 
+            // authorDataGridViewTextBoxColumn
+            // 
+            authorDataGridViewTextBoxColumn.DataPropertyName = "Author";
+            authorDataGridViewTextBoxColumn.HeaderText = "Автор";
+            authorDataGridViewTextBoxColumn.Name = "authorDataGridViewTextBoxColumn";
+            authorDataGridViewTextBoxColumn.ReadOnly = true;
+            authorDataGridViewTextBoxColumn.Width = 65;
+            // 
+            // titleDataGridViewTextBoxColumn
+            // 
+            titleDataGridViewTextBoxColumn.DataPropertyName = "Title";
+            titleDataGridViewTextBoxColumn.HeaderText = "Назва";
+            titleDataGridViewTextBoxColumn.Name = "titleDataGridViewTextBoxColumn";
+            titleDataGridViewTextBoxColumn.ReadOnly = true;
+            titleDataGridViewTextBoxColumn.Width = 64;
+            // 
+            // idDataGridViewTextBoxColumn
+            // 
+            idDataGridViewTextBoxColumn.DataPropertyName = "Id";
+            idDataGridViewTextBoxColumn.HeaderText = "ID";
+            idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
+            idDataGridViewTextBoxColumn.ReadOnly = true;
+            idDataGridViewTextBoxColumn.Width = 43;
+            // 
+            // resultsDataGridView
+            // 
+            resultsDataGridView.AllowUserToAddRows = false;
+            resultsDataGridView.AllowUserToDeleteRows = false;
+            resultsDataGridView.Anchor = AnchorStyles.None;
+            resultsDataGridView.AutoGenerateColumns = false;
+            resultsDataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
+            resultsDataGridView.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.DisplayedCells;
+            resultsDataGridView.BackgroundColor = Color.White;
+            resultsDataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            resultsDataGridView.Columns.AddRange(new DataGridViewColumn[] { idDataGridViewTextBoxColumn, titleDataGridViewTextBoxColumn, authorDataGridViewTextBoxColumn, dateOfPublishDataGridViewTextBoxColumn, publishHouseDataGridViewTextBoxColumn, countDataGridViewTextBoxColumn });
+            resultsDataGridView.DataSource = bookBindingSource;
+            resultsDataGridView.Location = new Point(154, 247);
+            resultsDataGridView.MultiSelect = false;
+            resultsDataGridView.Name = "resultsDataGridView";
+            resultsDataGridView.ReadOnly = true;
+            resultsDataGridView.RowHeadersVisible = false;
+            resultsDataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            resultsDataGridView.Size = new Size(464, 127);
+            resultsDataGridView.TabIndex = 14;
             // 
             // Form1
             // 
+            AcceptButton = searchButton;
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(773, 450);
+            Controls.Add(resultsDataGridView);
             Controls.Add(takeButton);
             Controls.Add(editButton);
             Controls.Add(removeButton);
             Controls.Add(addButton);
-            Controls.Add(resultsListBox);
             Controls.Add(groupBox1);
             Controls.Add(menuStrip1);
             MainMenuStrip = menuStrip1;
@@ -291,6 +361,7 @@
             ((System.ComponentModel.ISupportInitialize)bookBindingSource).EndInit();
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)resultsDataGridView).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -308,7 +379,6 @@
         private TextBox publishHouseTextBox;
         private TextBox publishYearTextBox;
         private Button searchButton;
-        private ListBox resultsListBox;
         private Button addButton;
         private Button removeButton;
         private Button editButton;
@@ -320,5 +390,13 @@
         private ToolStripMenuItem takenBooksMenuItem;
         private ToolStripMenuItem logoutMenuItem;
         private ToolStripMenuItem nameMenuItem;
+        private DataGridViewTextBoxColumn countDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn publishHouseDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn dateOfPublishDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn authorDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn titleDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
+        private DataGridView resultsDataGridView;
+        private ToolStripMenuItem aboutProgramMenuItem;
     }
 }

@@ -71,7 +71,7 @@
             countNumericUpDown.Maximum = new decimal(new int[] { 1000, 0, 0, 0 });
             countNumericUpDown.Name = "countNumericUpDown";
             countNumericUpDown.Size = new Size(162, 23);
-            countNumericUpDown.TabIndex = 13;
+            countNumericUpDown.TabIndex = 4;
             // 
             // label6
             // 
@@ -87,14 +87,14 @@
             dateOfPublishPicker.Location = new Point(94, 92);
             dateOfPublishPicker.Name = "dateOfPublishPicker";
             dateOfPublishPicker.Size = new Size(162, 23);
-            dateOfPublishPicker.TabIndex = 11;
+            dateOfPublishPicker.TabIndex = 2;
             // 
             // addButton
             // 
             addButton.Location = new Point(181, 179);
             addButton.Name = "addButton";
             addButton.Size = new Size(75, 23);
-            addButton.TabIndex = 10;
+            addButton.TabIndex = 5;
             addButton.Text = "Додати";
             addButton.UseVisualStyleBackColor = true;
             addButton.Click += addButton_Click;
@@ -123,7 +123,7 @@
             publishHouseTextBox.MaxLength = 50;
             publishHouseTextBox.Name = "publishHouseTextBox";
             publishHouseTextBox.Size = new Size(162, 23);
-            publishHouseTextBox.TabIndex = 7;
+            publishHouseTextBox.TabIndex = 3;
             // 
             // label3
             // 
@@ -149,7 +149,7 @@
             authorTextBox.MaxLength = 50;
             authorTextBox.Name = "authorTextBox";
             authorTextBox.Size = new Size(162, 23);
-            authorTextBox.TabIndex = 2;
+            authorTextBox.TabIndex = 1;
             // 
             // nameTextBox
             // 
@@ -157,7 +157,7 @@
             nameTextBox.MaxLength = 50;
             nameTextBox.Name = "nameTextBox";
             nameTextBox.Size = new Size(162, 23);
-            nameTextBox.TabIndex = 1;
+            nameTextBox.TabIndex = 0;
             // 
             // BookAddForm
             // 

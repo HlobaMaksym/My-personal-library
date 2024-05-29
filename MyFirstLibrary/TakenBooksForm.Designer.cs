@@ -30,8 +30,8 @@
         {
             components = new System.ComponentModel.Container();
             booksListBox = new ListBox();
-            returnBookButton = new Button();
             bookBindingSource = new BindingSource(components);
+            returnBookButton = new Button();
             ((System.ComponentModel.ISupportInitialize)bookBindingSource).BeginInit();
             SuspendLayout();
             // 
@@ -48,20 +48,20 @@
             booksListBox.TabIndex = 2;
             booksListBox.ValueMember = "Id";
             // 
+            // bookBindingSource
+            // 
+            bookBindingSource.DataSource = typeof(Book);
+            // 
             // returnBookButton
             // 
             returnBookButton.Anchor = AnchorStyles.None;
             returnBookButton.Location = new Point(72, 372);
             returnBookButton.Name = "returnBookButton";
             returnBookButton.Size = new Size(113, 33);
-            returnBookButton.TabIndex = 3;
+            returnBookButton.TabIndex = 0;
             returnBookButton.Text = "Повернути книгу";
             returnBookButton.UseVisualStyleBackColor = true;
             returnBookButton.Click += returnBookButton_Click;
-            // 
-            // bookBindingSource
-            // 
-            bookBindingSource.DataSource = typeof(Book);
             // 
             // TakenBooksForm
             // 

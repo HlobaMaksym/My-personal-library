@@ -63,7 +63,7 @@
             userNameTextBox.MaxLength = 50;
             userNameTextBox.Name = "userNameTextBox";
             userNameTextBox.Size = new Size(132, 23);
-            userNameTextBox.TabIndex = 12;
+            userNameTextBox.TabIndex = 0;
             // 
             // loginButton
             // 
@@ -71,7 +71,7 @@
             loginButton.Location = new Point(48, 152);
             loginButton.Name = "loginButton";
             loginButton.Size = new Size(132, 23);
-            loginButton.TabIndex = 18;
+            loginButton.TabIndex = 2;
             loginButton.Text = "Увійти";
             loginButton.UseVisualStyleBackColor = true;
             loginButton.Click += loginButton_Click;
@@ -82,7 +82,7 @@
             registrationButton.Location = new Point(48, 181);
             registrationButton.Name = "registrationButton";
             registrationButton.Size = new Size(132, 23);
-            registrationButton.TabIndex = 19;
+            registrationButton.TabIndex = 3;
             registrationButton.Text = "Зареєструватися";
             registrationButton.UseVisualStyleBackColor = true;
             registrationButton.Click += registrationButton_Click;
@@ -94,7 +94,7 @@
             passwordTextBox.MaxLength = 15;
             passwordTextBox.Name = "passwordTextBox";
             passwordTextBox.Size = new Size(132, 23);
-            passwordTextBox.TabIndex = 20;
+            passwordTextBox.TabIndex = 1;
             passwordTextBox.UseSystemPasswordChar = true;
             // 
             // LoginForm

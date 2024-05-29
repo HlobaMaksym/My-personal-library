@@ -75,7 +75,7 @@
             countNumericUpDown.Maximum = new decimal(new int[] { 1000, 0, 0, 0 });
             countNumericUpDown.Name = "countNumericUpDown";
             countNumericUpDown.Size = new Size(162, 23);
-            countNumericUpDown.TabIndex = 13;
+            countNumericUpDown.TabIndex = 5;
             // 
             // label6
             // 
@@ -91,7 +91,7 @@
             dateOfPublishPicker.Location = new Point(94, 109);
             dateOfPublishPicker.Name = "dateOfPublishPicker";
             dateOfPublishPicker.Size = new Size(162, 23);
-            dateOfPublishPicker.TabIndex = 11;
+            dateOfPublishPicker.TabIndex = 3;
             // 
             // idNumericUpDown
             // 
@@ -100,14 +100,14 @@
             idNumericUpDown.Maximum = new decimal(new int[] { 10000, 0, 0, 0 });
             idNumericUpDown.Name = "idNumericUpDown";
             idNumericUpDown.Size = new Size(162, 23);
-            idNumericUpDown.TabIndex = 5;
+            idNumericUpDown.TabIndex = 0;
             // 
             // saveButton
             // 
             saveButton.Location = new Point(181, 196);
             saveButton.Name = "saveButton";
             saveButton.Size = new Size(75, 23);
-            saveButton.TabIndex = 10;
+            saveButton.TabIndex = 6;
             saveButton.Text = "Зберегти";
             saveButton.UseVisualStyleBackColor = true;
             saveButton.Click += saveButton_Click;
@@ -136,7 +136,7 @@
             publishHouseTextBox.MaxLength = 50;
             publishHouseTextBox.Name = "publishHouseTextBox";
             publishHouseTextBox.Size = new Size(162, 23);
-            publishHouseTextBox.TabIndex = 7;
+            publishHouseTextBox.TabIndex = 4;
             // 
             // label3
             // 
