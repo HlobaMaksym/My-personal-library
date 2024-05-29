@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MyFirstLibrary
+namespace MyFirstLibrary.Models
 {
     public class User
     {
@@ -12,8 +12,8 @@ namespace MyFirstLibrary
         public string Name { get; set; }
         public string Password { get; set; }
         public List<int> TakenBookIds { get; set; }
-        public bool IsAdmin {  get; set; }
-        public User(int id, string name, string password, List<int> takenBookIds, bool isAdmin) 
+        public bool IsAdmin { get; set; }
+        public User(int id, string name, string password, List<int> takenBookIds, bool isAdmin)
         {
             Id = id;
             Name = name;

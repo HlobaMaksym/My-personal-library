@@ -1,16 +1,15 @@
 using System.Windows.Forms;
+using MyFirstLibrary.Models;
 
 namespace MyFirstLibrary
 {
     public partial class Form1 : Form
     {
+        private Library library = null!;
         public Form1()
         {
             InitializeComponent();
-
         }
-
-        private Library library;
         public bool OpenLogin { get; private set; }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -26,7 +25,7 @@ namespace MyFirstLibrary
             nameMenuItem.Text += $" {library.GetLoggedUser()?.Name}";
         }
 
-        private void searchButton_Click(object sender, EventArgs e)
+        private void searchButton_Click(object? sender, EventArgs? e)
         {
             int? id = null;
             int? year = null;
@@ -153,6 +152,9 @@ namespace MyFirstLibrary
             addButton.Visible = false;
             editButton.Visible = false;
             removeButton.Visible = false;
+            addBookMenuItem.Visible = false;
+            deleteBookMenuItem.Visible = false;
+            editBookMenuItem.Visible = false;
             resultsDataGridView.Left = (ClientSize.Width - resultsDataGridView.Width) / 2;
             takeButton.Left = (ClientSize.Width - takeButton.Width) / 2;
         }

@@ -1,4 +1,6 @@
-﻿namespace MyFirstLibrary
+﻿using MyFirstLibrary.Models;
+
+namespace MyFirstLibrary
 {
     partial class Form1
     {
@@ -48,9 +50,16 @@
             takeButton = new Button();
             menuStrip1 = new MenuStrip();
             nameMenuItem = new ToolStripMenuItem();
-            takenBooksMenuItem = new ToolStripMenuItem();
-            logoutMenuItem = new ToolStripMenuItem();
-            aboutProgramMenuItem = new ToolStripMenuItem();
+            аккаунтToolStripMenuItem = new ToolStripMenuItem();
+            вийтиЗToolStripMenuItem = new ToolStripMenuItem();
+            книгаToolStripMenuItem = new ToolStripMenuItem();
+            addBookMenuItem = new ToolStripMenuItem();
+            deleteBookMenuItem = new ToolStripMenuItem();
+            editBookMenuItem = new ToolStripMenuItem();
+            взятToolStripMenuItem = new ToolStripMenuItem();
+            моїКнигиToolStripMenuItem = new ToolStripMenuItem();
+            допомогаToolStripMenuItem = new ToolStripMenuItem();
+            аToolStripMenuItem = new ToolStripMenuItem();
             countDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             publishHouseDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             dateOfPublishDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
@@ -80,7 +89,7 @@
             groupBox1.Controls.Add(label1);
             groupBox1.Controls.Add(authorTextBox);
             groupBox1.Controls.Add(nameTextBox);
-            groupBox1.Location = new Point(174, 27);
+            groupBox1.Location = new Point(136, 27);
             groupBox1.Name = "groupBox1";
             groupBox1.Size = new Size(426, 214);
             groupBox1.TabIndex = 0;
@@ -188,7 +197,7 @@
             // addButton
             // 
             addButton.Anchor = AnchorStyles.None;
-            addButton.Location = new Point(197, 380);
+            addButton.Location = new Point(159, 380);
             addButton.Name = "addButton";
             addButton.Size = new Size(90, 23);
             addButton.TabIndex = 6;
@@ -199,7 +208,7 @@
             // removeButton
             // 
             removeButton.Anchor = AnchorStyles.None;
-            removeButton.Location = new Point(293, 380);
+            removeButton.Location = new Point(255, 380);
             removeButton.Name = "removeButton";
             removeButton.Size = new Size(90, 23);
             removeButton.TabIndex = 7;
@@ -210,7 +219,7 @@
             // editButton
             // 
             editButton.Anchor = AnchorStyles.None;
-            editButton.Location = new Point(389, 380);
+            editButton.Location = new Point(351, 380);
             editButton.Name = "editButton";
             editButton.Size = new Size(90, 23);
             editButton.TabIndex = 8;
@@ -221,7 +230,7 @@
             // takeButton
             // 
             takeButton.Anchor = AnchorStyles.None;
-            takeButton.Location = new Point(485, 380);
+            takeButton.Location = new Point(447, 380);
             takeButton.Name = "takeButton";
             takeButton.Size = new Size(90, 23);
             takeButton.TabIndex = 9;
@@ -232,10 +241,10 @@
             // menuStrip1
             // 
             menuStrip1.BackColor = Color.White;
-            menuStrip1.Items.AddRange(new ToolStripItem[] { nameMenuItem, takenBooksMenuItem, logoutMenuItem, aboutProgramMenuItem });
+            menuStrip1.Items.AddRange(new ToolStripItem[] { nameMenuItem, аккаунтToolStripMenuItem, книгаToolStripMenuItem, допомогаToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
-            menuStrip1.Size = new Size(773, 24);
+            menuStrip1.Size = new Size(696, 24);
             menuStrip1.TabIndex = 13;
             menuStrip1.Text = "menuStrip1";
             // 
@@ -246,26 +255,75 @@
             nameMenuItem.Size = new Size(60, 20);
             nameMenuItem.Text = "Акаунт:";
             // 
-            // takenBooksMenuItem
+            // аккаунтToolStripMenuItem
             // 
-            takenBooksMenuItem.Name = "takenBooksMenuItem";
-            takenBooksMenuItem.Size = new Size(75, 20);
-            takenBooksMenuItem.Text = "Мої книги";
-            takenBooksMenuItem.Click += takenBooksMenuItem_Click;
+            аккаунтToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { вийтиЗToolStripMenuItem });
+            аккаунтToolStripMenuItem.Name = "аккаунтToolStripMenuItem";
+            аккаунтToolStripMenuItem.Size = new Size(57, 20);
+            аккаунтToolStripMenuItem.Text = "Акаунт";
             // 
-            // logoutMenuItem
+            // вийтиЗToolStripMenuItem
             // 
-            logoutMenuItem.Name = "logoutMenuItem";
-            logoutMenuItem.Size = new Size(105, 20);
-            logoutMenuItem.Text = "Вийти з акаунту";
-            logoutMenuItem.Click += logoutMenuItem_Click;
+            вийтиЗToolStripMenuItem.Name = "вийтиЗToolStripMenuItem";
+            вийтиЗToolStripMenuItem.Size = new Size(107, 22);
+            вийтиЗToolStripMenuItem.Text = "Вийти";
+            вийтиЗToolStripMenuItem.Click += logoutMenuItem_Click;
             // 
-            // aboutProgramMenuItem
+            // книгаToolStripMenuItem
             // 
-            aboutProgramMenuItem.Name = "aboutProgramMenuItem";
-            aboutProgramMenuItem.Size = new Size(99, 20);
-            aboutProgramMenuItem.Text = "Про програму";
-            aboutProgramMenuItem.Click += aboutProgramMenuItem_Click;
+            книгаToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { addBookMenuItem, deleteBookMenuItem, editBookMenuItem, взятToolStripMenuItem, моїКнигиToolStripMenuItem });
+            книгаToolStripMenuItem.Name = "книгаToolStripMenuItem";
+            книгаToolStripMenuItem.Size = new Size(52, 20);
+            книгаToolStripMenuItem.Text = "Книги";
+            // 
+            // addBookMenuItem
+            // 
+            addBookMenuItem.Name = "addBookMenuItem";
+            addBookMenuItem.Size = new Size(138, 22);
+            addBookMenuItem.Text = "Додати";
+            addBookMenuItem.Click += addButton_Click;
+            // 
+            // deleteBookMenuItem
+            // 
+            deleteBookMenuItem.Name = "deleteBookMenuItem";
+            deleteBookMenuItem.Size = new Size(138, 22);
+            deleteBookMenuItem.Text = "Видалити";
+            deleteBookMenuItem.Click += removeButton_Click;
+            // 
+            // editBookMenuItem
+            // 
+            editBookMenuItem.Name = "editBookMenuItem";
+            editBookMenuItem.Size = new Size(138, 22);
+            editBookMenuItem.Text = "Редагувати";
+            editBookMenuItem.Click += editButton_Click;
+            // 
+            // взятToolStripMenuItem
+            // 
+            взятToolStripMenuItem.Name = "взятToolStripMenuItem";
+            взятToolStripMenuItem.Size = new Size(138, 22);
+            взятToolStripMenuItem.Text = "Взяти книгу";
+            взятToolStripMenuItem.Click += takeButton_Click;
+            // 
+            // моїКнигиToolStripMenuItem
+            // 
+            моїКнигиToolStripMenuItem.Name = "моїКнигиToolStripMenuItem";
+            моїКнигиToolStripMenuItem.Size = new Size(138, 22);
+            моїКнигиToolStripMenuItem.Text = "Мої книги";
+            моїКнигиToolStripMenuItem.Click += takenBooksMenuItem_Click;
+            // 
+            // допомогаToolStripMenuItem
+            // 
+            допомогаToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { аToolStripMenuItem });
+            допомогаToolStripMenuItem.Name = "допомогаToolStripMenuItem";
+            допомогаToolStripMenuItem.Size = new Size(75, 20);
+            допомогаToolStripMenuItem.Text = "Допомога";
+            // 
+            // аToolStripMenuItem
+            // 
+            аToolStripMenuItem.Name = "аToolStripMenuItem";
+            аToolStripMenuItem.Size = new Size(154, 22);
+            аToolStripMenuItem.Text = "Про програму";
+            аToolStripMenuItem.Click += aboutProgramMenuItem_Click;
             // 
             // countDataGridViewTextBoxColumn
             // 
@@ -327,13 +385,13 @@
             resultsDataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             resultsDataGridView.Columns.AddRange(new DataGridViewColumn[] { idDataGridViewTextBoxColumn, titleDataGridViewTextBoxColumn, authorDataGridViewTextBoxColumn, dateOfPublishDataGridViewTextBoxColumn, publishHouseDataGridViewTextBoxColumn, countDataGridViewTextBoxColumn });
             resultsDataGridView.DataSource = bookBindingSource;
-            resultsDataGridView.Location = new Point(154, 247);
+            resultsDataGridView.Location = new Point(22, 247);
             resultsDataGridView.MultiSelect = false;
             resultsDataGridView.Name = "resultsDataGridView";
             resultsDataGridView.ReadOnly = true;
             resultsDataGridView.RowHeadersVisible = false;
             resultsDataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            resultsDataGridView.Size = new Size(464, 127);
+            resultsDataGridView.Size = new Size(653, 127);
             resultsDataGridView.TabIndex = 14;
             // 
             // Form1
@@ -341,7 +399,7 @@
             AcceptButton = searchButton;
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(773, 450);
+            ClientSize = new Size(696, 450);
             Controls.Add(resultsDataGridView);
             Controls.Add(takeButton);
             Controls.Add(editButton);
@@ -350,7 +408,7 @@
             Controls.Add(groupBox1);
             Controls.Add(menuStrip1);
             MainMenuStrip = menuStrip1;
-            MinimumSize = new Size(500, 489);
+            MinimumSize = new Size(712, 489);
             Name = "Form1";
             Text = "Form1";
             Load += Form1_Load;
@@ -387,8 +445,6 @@
         private NumericUpDown yearNumericUpDown;
         private Button takeButton;
         private MenuStrip menuStrip1;
-        private ToolStripMenuItem takenBooksMenuItem;
-        private ToolStripMenuItem logoutMenuItem;
         private ToolStripMenuItem nameMenuItem;
         private DataGridViewTextBoxColumn countDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn publishHouseDataGridViewTextBoxColumn;
@@ -397,6 +453,15 @@
         private DataGridViewTextBoxColumn titleDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
         private DataGridView resultsDataGridView;
-        private ToolStripMenuItem aboutProgramMenuItem;
+        private ToolStripMenuItem книгаToolStripMenuItem;
+        private ToolStripMenuItem addBookMenuItem;
+        private ToolStripMenuItem deleteBookMenuItem;
+        private ToolStripMenuItem editBookMenuItem;
+        private ToolStripMenuItem взятToolStripMenuItem;
+        private ToolStripMenuItem моїКнигиToolStripMenuItem;
+        private ToolStripMenuItem допомогаToolStripMenuItem;
+        private ToolStripMenuItem аToolStripMenuItem;
+        private ToolStripMenuItem аккаунтToolStripMenuItem;
+        private ToolStripMenuItem вийтиЗToolStripMenuItem;
     }
 }

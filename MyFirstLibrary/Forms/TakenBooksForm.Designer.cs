@@ -1,4 +1,6 @@
-﻿namespace MyFirstLibrary
+﻿using MyFirstLibrary.Models;
+
+namespace MyFirstLibrary
 {
     partial class TakenBooksForm
     {

@@ -6,7 +6,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
-namespace MyFirstLibrary
+namespace MyFirstLibrary.Models
 {
     public class Library
     {
@@ -25,21 +25,21 @@ namespace MyFirstLibrary
             LoggedUserId = loggedUserId;
         }
 
-        public List<Book> Search(int? id = null, string title = null, string author = null, int? yearOfPublish = null, string publishHouse = null)
+        public List<Book> Search(int? id = null, string? title = null, string? author = null, int? yearOfPublish = null, string? publishHouse = null)
         {
             return Books.Where(book =>
                 (!id.HasValue || book.Id == id.Value) &&
-                (string.IsNullOrEmpty(title) || book.Title.Contains(title, StringComparison.OrdinalIgnoreCase)) 
+                (string.IsNullOrEmpty(title) || book.Title.Contains(title, StringComparison.OrdinalIgnoreCase))
                 && (string.IsNullOrEmpty(author) || book.Author.Contains(author, StringComparison.OrdinalIgnoreCase)) &&
                 (!yearOfPublish.HasValue || book.DateOfPublish.Year == yearOfPublish.Value) &&
                 (string.IsNullOrEmpty(publishHouse) || book.PublishHouse.Contains(publishHouse, StringComparison.OrdinalIgnoreCase))
             ).OrderBy(book => book.Title).ToList();
         }
 
-        public void Edit(Book book) 
+        public void Edit(Book book)
         {
             Book? originalBook = Search(book.Id).FirstOrDefault();
-            if(originalBook == null) 
+            if (originalBook == null)
             {
                 return;
             }
@@ -64,13 +64,13 @@ namespace MyFirstLibrary
             {
                 jsonString = File.ReadAllText(PATH);
             }
-            catch(FileNotFoundException exception)
+            catch (FileNotFoundException)
             {
 
             }
             User defoltUser = new User(1, "Admin", "Nimda", [], true);
             Library emptyLibrary = new Library([], [defoltUser], defoltUser.Id);
-            if(jsonString == "")
+            if (jsonString == "")
             {
                 return emptyLibrary;
             }
@@ -95,7 +95,7 @@ namespace MyFirstLibrary
         public void TakeBook(Book book)
         {
             User? user = GetLoggedUser();
-            if(user == null || book.Count == 0)
+            if (user == null || book.Count == 0)
             {
                 return;
             }
@@ -131,7 +131,7 @@ namespace MyFirstLibrary
 
         public User? Register(string userName, string password)
         {
-            if(Users.Any(user => user.Name == userName))
+            if (Users.Any(user => user.Name == userName))
             {
                 return null;
             }

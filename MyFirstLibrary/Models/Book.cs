@@ -6,7 +6,7 @@ using System.Text.Json.Serialization;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
-namespace MyFirstLibrary
+namespace MyFirstLibrary.Models
 {
     public class Book
     {
@@ -17,7 +17,6 @@ namespace MyFirstLibrary
         public string PublishHouse { get; set; }
         public int Count { get; set; }
         private const int FIRST_BOOK_PUBLISH_YEAR = 1574;
-        public Color TitleColor => Count == 0 ? Color.DarkGray : Color.Black;
 
         [JsonConstructor]
         public Book(int id, string title, string author, DateOnly dateOfPublish, string publishHouse, int count)
@@ -43,32 +42,32 @@ namespace MyFirstLibrary
         {
             if (Title.Length == 0)
             {
-                MessageBox.Show("Назву книги не введено", 
+                MessageBox.Show("Назву книги не введено",
                     "Сталася помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
             if (Author.Length == 0)
             {
-                MessageBox.Show("Ім'я автора книги не введено", 
+                MessageBox.Show("Ім'я автора книги не введено",
                     "Сталася помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
             Regex regex = new Regex(@"[\d!@#$%^&*()_+=\[{\]};:<>|./?,-]");
             if (regex.IsMatch(Author))
             {
-                MessageBox.Show("Ім'я автора книги містить недопустимі символи або цифри", 
+                MessageBox.Show("Ім'я автора книги містить недопустимі символи або цифри",
                     "Сталася помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
             if (DateOfPublish > DateOnly.FromDateTime(DateTime.Now) || DateOfPublish.Year < FIRST_BOOK_PUBLISH_YEAR)
             {
-                MessageBox.Show("Дату публікації введено не вірно", 
+                MessageBox.Show("Дату публікації введено не вірно",
                     "Сталася помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
             if (PublishHouse.Length == 0)
             {
-                MessageBox.Show("Видавництво не введено", 
+                MessageBox.Show("Видавництво не введено",
                     "Сталася помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
