@@ -150,6 +150,7 @@
             authorTextBox.Name = "authorTextBox";
             authorTextBox.Size = new Size(162, 23);
             authorTextBox.TabIndex = 1;
+            authorTextBox.KeyPress += authorTextBox_KeyPress;
             // 
             // nameTextBox
             // 

@@ -39,6 +39,7 @@ namespace MyFirstLibrary
             }
             library.AddBook(book);
             library.SaveData();
+            MessageBox.Show("Ви успішно додали книгу", "Успіх", MessageBoxButtons.OK, MessageBoxIcon.Information);
             Close();
         }
 
@@ -46,6 +47,14 @@ namespace MyFirstLibrary
         {
             int id = library.Books.MaxBy(book => book.Id)?.Id ?? 0;
             return new Book(id + 1, nameTextBox.Text, authorTextBox.Text, DateOnly.FromDateTime(dateOfPublishPicker.Value), publishHouseTextBox.Text, (int)countNumericUpDown.Value);
+        }
+
+        private void authorTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Delete || Book.REGEX.IsMatch(e.KeyChar.ToString()))
+            {
+                e.Handled = true;
+            }
         }
     }
 }

@@ -17,9 +17,11 @@ namespace MyFirstLibrary.Models
         public string PublishHouse { get; set; }
         public int Count { get; set; }
         private const int FIRST_BOOK_PUBLISH_YEAR = 1574;
+        public static readonly Regex REGEX = new Regex(@"[\d!@#$%^&*()_+=\[{\]};:<>|./?,]");
 
         [JsonConstructor]
-        public Book(int id, string title, string author, DateOnly dateOfPublish, string publishHouse, int count)
+        public Book(int id, string title, string author, 
+            DateOnly dateOfPublish, string publishHouse, int count)
         {
             Id = id;
             Title = title;
@@ -52,14 +54,8 @@ namespace MyFirstLibrary.Models
                     "Сталася помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
-            Regex regex = new Regex(@"[\d!@#$%^&*()_+=\[{\]};:<>|./?,-]");
-            if (regex.IsMatch(Author))
-            {
-                MessageBox.Show("Ім'я автора книги містить недопустимі символи або цифри",
-                    "Сталася помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
-            }
-            if (DateOfPublish > DateOnly.FromDateTime(DateTime.Now) || DateOfPublish.Year < FIRST_BOOK_PUBLISH_YEAR)
+            if (DateOfPublish > DateOnly.FromDateTime(DateTime.Now) 
+                || DateOfPublish.Year < FIRST_BOOK_PUBLISH_YEAR)
             {
                 MessageBox.Show("Дату публікації введено не вірно",
                     "Сталася помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);

@@ -34,10 +34,15 @@ namespace MyFirstLibrary
                 MessageBox.Show("Книга не обрана", "Сталася помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            library.ReturnBook(selectedBook);
-            library.SaveData();
-            UpdateBooks();
-            MessageBox.Show("Ви успішно повернули книгу", "Успіх", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            DialogResult result = MessageBox.Show("Ви точно хочете повернути цю книгу?",
+                "Пітвердження", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
+            {
+                library.ReturnBook(selectedBook);
+                library.SaveData();
+                UpdateBooks();
+                MessageBox.Show("Ви успішно повернули книгу", "Успіх", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
     }
 }

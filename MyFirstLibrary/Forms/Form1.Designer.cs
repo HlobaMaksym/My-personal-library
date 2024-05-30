@@ -181,6 +181,7 @@ namespace MyFirstLibrary
             authorTextBox.Name = "authorTextBox";
             authorTextBox.Size = new Size(310, 23);
             authorTextBox.TabIndex = 2;
+            authorTextBox.KeyPress += authorTextBox_KeyPress;
             // 
             // nameTextBox
             // 
@@ -391,7 +392,7 @@ namespace MyFirstLibrary
             resultsDataGridView.ReadOnly = true;
             resultsDataGridView.RowHeadersVisible = false;
             resultsDataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            resultsDataGridView.Size = new Size(653, 127);
+            resultsDataGridView.Size = new Size(652, 127);
             resultsDataGridView.TabIndex = 14;
             // 
             // Form1

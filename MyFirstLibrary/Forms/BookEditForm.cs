@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Reflection;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using MyFirstLibrary.Models;
@@ -62,7 +63,16 @@ namespace MyFirstLibrary
             }
             library.Edit(book);
             library.SaveData();
+            MessageBox.Show("Ви успішно відредагували книгу", "Успіх", MessageBoxButtons.OK, MessageBoxIcon.Information);
             Close();
+        }
+
+        private void authorTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Delete || Book.REGEX.IsMatch(e.KeyChar.ToString()))
+            {
+                e.Handled = true;
+            }
         }
     }
 }

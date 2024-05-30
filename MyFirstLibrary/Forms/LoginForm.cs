@@ -29,7 +29,6 @@ namespace MyFirstLibrary
             {
                 OpenMainForm = true;
                 Close();
-
             }
         }
 

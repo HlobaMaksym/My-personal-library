@@ -37,9 +37,15 @@ namespace MyFirstLibrary
             {
                 year = (int)yearNumericUpDown.Value;
             }
-            bookBindingSource.DataSource = library.Search(id,
+            List<Book> books = library.Search(id,
                 nameTextBox.Text, authorTextBox.Text,
                 year, publishHouseTextBox.Text);
+            bookBindingSource.DataSource = books;
+            if (books.Count == 0 && sender != null)
+            {
+                MessageBox.Show("Не знайдено книги яка відповідає даним критеріям",
+                    "Інформація", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
 
         private Book? GetSelectedBook()
@@ -47,7 +53,7 @@ namespace MyFirstLibrary
             Book? selectedBook = bookBindingSource.Current as Book;
             if (selectedBook == null)
             {
-                MessageBox.Show("Книга не обрана", "Сталася помилка", 
+                MessageBox.Show("Книга не обрана", "Сталася помилка",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return null;
             }
@@ -82,17 +88,18 @@ namespace MyFirstLibrary
             }
             if (library.IsBookTaken(selectedBook))
             {
-                MessageBox.Show("Не всі книги були повернені користувачами. Видалення неможливе", 
+                MessageBox.Show("Не всі книги були повернені користувачами. Видалення неможливе",
                     "Сталася помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            DialogResult result = MessageBox.Show("Ви точно хочете видалити цю книгу?", 
+            DialogResult result = MessageBox.Show("Ви точно хочете видалити цю книгу?",
                 "Пітвердження", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (result == DialogResult.Yes)
             {
                 library.DeleteBook(selectedBook.Id);
                 library.SaveData();
                 searchButton_Click(null, null);
+                MessageBox.Show("Ви успішно видалили книгу", "Успіх", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
@@ -105,24 +112,24 @@ namespace MyFirstLibrary
             }
             if (selectedBook.Count == 0)
             {
-                MessageBox.Show("Наразі даної книги немає", 
+                MessageBox.Show("Наразі даної книги немає",
                     "Сталася помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             if (library.GetLoggedUser()?.IsBookTaken(selectedBook.Id) == true)
             {
-                MessageBox.Show("Ви не можете взяти більше одного примірника цієї книги", 
+                MessageBox.Show("Ви не можете взяти більше одного примірника цієї книги",
                     "Сталася помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            DialogResult result = MessageBox.Show("Ви точно хочете взяти цю книгу?", 
+            DialogResult result = MessageBox.Show("Ви точно хочете взяти цю книгу?",
                 "Пітвердження", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (result == DialogResult.Yes)
             {
                 library.TakeBook(selectedBook);
                 library.SaveData();
                 searchButton_Click(null, null);
-                MessageBox.Show("Ви успішно взяли книгу", 
+                MessageBox.Show("Ви успішно взяли книгу",
                     "Успіх", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
@@ -136,7 +143,7 @@ namespace MyFirstLibrary
 
         private void logoutMenuItem_Click(object sender, EventArgs e)
         {
-            DialogResult result = MessageBox.Show("Ви точно хочете вийти з акаунту?", 
+            DialogResult result = MessageBox.Show("Ви точно хочете вийти з акаунту?",
                 "Пітвердження", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (result == DialogResult.Yes)
             {
@@ -162,6 +169,14 @@ namespace MyFirstLibrary
         private void aboutProgramMenuItem_Click(object sender, EventArgs e)
         {
             MessageBox.Show("   Розробник цієї програми Глоба Максим.\n   Програма являє собою зручний додаток для користування електронною бібліотекою. Дозволяє користувачеві шукати цікаві йому книжки за деякими критеріями та брати ці книжки з можливістю їх повертання. Для бібліотекаря (Адміна) доступні всі можливості, які доступні користувачеві, а також додаткові можливості, такі як: додавання, видалення та редагування книг.", "Про програму", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void authorTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Delete || Book.REGEX.IsMatch(e.KeyChar.ToString()))
+            {
+                e.Handled = true;
+            }
         }
     }
 }

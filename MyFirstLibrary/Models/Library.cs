@@ -25,7 +25,8 @@ namespace MyFirstLibrary.Models
             LoggedUserId = loggedUserId;
         }
 
-        public List<Book> Search(int? id = null, string? title = null, string? author = null, int? yearOfPublish = null, string? publishHouse = null)
+        public List<Book> Search(int? id = null, string? title = null, 
+            string? author = null, int? yearOfPublish = null, string? publishHouse = null)
         {
             return Books.Where(book =>
                 (!id.HasValue || book.Id == id.Value) &&
@@ -79,7 +80,8 @@ namespace MyFirstLibrary.Models
 
         public bool IsUniqueBook(Book book)
         {
-            return Books.Where(b => b.Title == book.Title && b.Author == book.Author && b.Id != book.Id).Count() == 0;
+            return Books.Where(b => b.Title == book.Title && b.Author == book.Author 
+            && b.Id != book.Id && b.PublishHouse == book.PublishHouse).Count() == 0;
         }
 
         public void DeleteBook(int id)
