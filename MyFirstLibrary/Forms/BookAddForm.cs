@@ -18,16 +18,12 @@ namespace MyFirstLibrary
         {
             this.library = library;
             InitializeComponent();
+            countNumericUpDown.TextChanged += textBox_TextChanged;
         }
 
         private void addButton_Click(object sender, EventArgs e)
         {
             Book book = CreateBook();
-            if (countNumericUpDown.Text.Length == 0)
-            {
-                MessageBox.Show("Кількість не введено", "Сталася помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
             if (!book.Validate())
             {
                 return;
@@ -39,7 +35,6 @@ namespace MyFirstLibrary
             }
             library.AddBook(book);
             library.SaveData();
-            MessageBox.Show("Ви успішно додали книгу", "Успіх", MessageBoxButtons.OK, MessageBoxIcon.Information);
             Close();
         }
 
@@ -55,6 +50,14 @@ namespace MyFirstLibrary
             {
                 e.Handled = true;
             }
+        }
+
+        private void textBox_TextChanged(object? sender, EventArgs? e)
+        {
+            addButton.Enabled = nameTextBox.Text.Length != 0
+                && authorTextBox.Text.Length != 0
+                && publishHouseTextBox.Text.Length != 0
+                && countNumericUpDown.Text.Length != 0;
         }
     }
 }

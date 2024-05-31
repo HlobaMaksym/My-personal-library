@@ -41,6 +41,9 @@ namespace MyFirstLibrary
                 nameTextBox.Text, authorTextBox.Text,
                 year, publishHouseTextBox.Text);
             bookBindingSource.DataSource = books;
+            editButton.Enabled = removeButton.Enabled = takeButton.Enabled = 
+                editBookMenuItem.Enabled = deleteBookMenuItem.Enabled = 
+                takeBookMenuItem.Enabled = books.Count != 0;
             if (books.Count == 0 && sender != null)
             {
                 MessageBox.Show("Не знайдено книги яка відповідає даним критеріям",
@@ -48,25 +51,15 @@ namespace MyFirstLibrary
             }
         }
 
-        private Book? GetSelectedBook()
+        private Book GetSelectedBook()
         {
-            Book? selectedBook = bookBindingSource.Current as Book;
-            if (selectedBook == null)
-            {
-                MessageBox.Show("Книга не обрана", "Сталася помилка",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return null;
-            }
+            Book selectedBook = (Book)bookBindingSource.Current;
             return selectedBook;
         }
 
         private void editButton_Click(object sender, EventArgs e)
         {
-            Book? selectedBook = GetSelectedBook();
-            if (selectedBook == null)
-            {
-                return;
-            }
+            Book selectedBook = GetSelectedBook();
             BookEditForm form = new BookEditForm(selectedBook.Id, library);
             form.ShowDialog();
             searchButton_Click(null, null);
@@ -81,11 +74,7 @@ namespace MyFirstLibrary
 
         private void removeButton_Click(object sender, EventArgs e)
         {
-            Book? selectedBook = GetSelectedBook();
-            if (selectedBook == null)
-            {
-                return;
-            }
+            Book selectedBook = GetSelectedBook();
             if (library.IsBookTaken(selectedBook))
             {
                 MessageBox.Show("Не всі книги були повернені користувачами. Видалення неможливе",
@@ -99,17 +88,12 @@ namespace MyFirstLibrary
                 library.DeleteBook(selectedBook.Id);
                 library.SaveData();
                 searchButton_Click(null, null);
-                MessageBox.Show("Ви успішно видалили книгу", "Успіх", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
         private void takeButton_Click(object sender, EventArgs e)
         {
-            Book? selectedBook = GetSelectedBook();
-            if (selectedBook == null)
-            {
-                return;
-            }
+            Book selectedBook = GetSelectedBook();
             if (selectedBook.Count == 0)
             {
                 MessageBox.Show("Наразі даної книги немає",

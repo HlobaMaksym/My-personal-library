@@ -137,6 +137,7 @@
             publishHouseTextBox.Name = "publishHouseTextBox";
             publishHouseTextBox.Size = new Size(162, 23);
             publishHouseTextBox.TabIndex = 4;
+            publishHouseTextBox.TextChanged += textBox_TextChanged;
             // 
             // label3
             // 
@@ -172,15 +173,17 @@
             authorTextBox.Name = "authorTextBox";
             authorTextBox.Size = new Size(162, 23);
             authorTextBox.TabIndex = 2;
+            authorTextBox.TextChanged += textBox_TextChanged;
             authorTextBox.KeyPress += authorTextBox_KeyPress;
             // 
             // nameTextBox
             // 
-            nameTextBox.Location = new Point(94, 51);
+            nameTextBox.Location = new Point(94, 52);
             nameTextBox.MaxLength = 50;
             nameTextBox.Name = "nameTextBox";
             nameTextBox.Size = new Size(162, 23);
             nameTextBox.TabIndex = 1;
+            nameTextBox.TextChanged += textBox_TextChanged;
             // 
             // BookEditForm
             // 

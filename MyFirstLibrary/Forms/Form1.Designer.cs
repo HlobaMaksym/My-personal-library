@@ -56,8 +56,8 @@ namespace MyFirstLibrary
             addBookMenuItem = new ToolStripMenuItem();
             deleteBookMenuItem = new ToolStripMenuItem();
             editBookMenuItem = new ToolStripMenuItem();
-            взятToolStripMenuItem = new ToolStripMenuItem();
-            моїКнигиToolStripMenuItem = new ToolStripMenuItem();
+            takeBookMenuItem = new ToolStripMenuItem();
+            myBooksMenuItem = new ToolStripMenuItem();
             допомогаToolStripMenuItem = new ToolStripMenuItem();
             аToolStripMenuItem = new ToolStripMenuItem();
             countDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
@@ -272,7 +272,7 @@ namespace MyFirstLibrary
             // 
             // книгаToolStripMenuItem
             // 
-            книгаToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { addBookMenuItem, deleteBookMenuItem, editBookMenuItem, взятToolStripMenuItem, моїКнигиToolStripMenuItem });
+            книгаToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { addBookMenuItem, deleteBookMenuItem, editBookMenuItem, takeBookMenuItem, myBooksMenuItem });
             книгаToolStripMenuItem.Name = "книгаToolStripMenuItem";
             книгаToolStripMenuItem.Size = new Size(52, 20);
             книгаToolStripMenuItem.Text = "Книги";
@@ -280,37 +280,37 @@ namespace MyFirstLibrary
             // addBookMenuItem
             // 
             addBookMenuItem.Name = "addBookMenuItem";
-            addBookMenuItem.Size = new Size(138, 22);
+            addBookMenuItem.Size = new Size(180, 22);
             addBookMenuItem.Text = "Додати";
             addBookMenuItem.Click += addButton_Click;
             // 
             // deleteBookMenuItem
             // 
             deleteBookMenuItem.Name = "deleteBookMenuItem";
-            deleteBookMenuItem.Size = new Size(138, 22);
+            deleteBookMenuItem.Size = new Size(180, 22);
             deleteBookMenuItem.Text = "Видалити";
             deleteBookMenuItem.Click += removeButton_Click;
             // 
             // editBookMenuItem
             // 
             editBookMenuItem.Name = "editBookMenuItem";
-            editBookMenuItem.Size = new Size(138, 22);
+            editBookMenuItem.Size = new Size(180, 22);
             editBookMenuItem.Text = "Редагувати";
             editBookMenuItem.Click += editButton_Click;
             // 
-            // взятToolStripMenuItem
+            // takeBookMenuItem
             // 
-            взятToolStripMenuItem.Name = "взятToolStripMenuItem";
-            взятToolStripMenuItem.Size = new Size(138, 22);
-            взятToolStripMenuItem.Text = "Взяти книгу";
-            взятToolStripMenuItem.Click += takeButton_Click;
+            takeBookMenuItem.Name = "takeBookMenuItem";
+            takeBookMenuItem.Size = new Size(180, 22);
+            takeBookMenuItem.Text = "Взяти книгу";
+            takeBookMenuItem.Click += takeButton_Click;
             // 
-            // моїКнигиToolStripMenuItem
+            // myBooksMenuItem
             // 
-            моїКнигиToolStripMenuItem.Name = "моїКнигиToolStripMenuItem";
-            моїКнигиToolStripMenuItem.Size = new Size(138, 22);
-            моїКнигиToolStripMenuItem.Text = "Мої книги";
-            моїКнигиToolStripMenuItem.Click += takenBooksMenuItem_Click;
+            myBooksMenuItem.Name = "myBooksMenuItem";
+            myBooksMenuItem.Size = new Size(180, 22);
+            myBooksMenuItem.Text = "Мої книги";
+            myBooksMenuItem.Click += takenBooksMenuItem_Click;
             // 
             // допомогаToolStripMenuItem
             // 
@@ -458,8 +458,8 @@ namespace MyFirstLibrary
         private ToolStripMenuItem addBookMenuItem;
         private ToolStripMenuItem deleteBookMenuItem;
         private ToolStripMenuItem editBookMenuItem;
-        private ToolStripMenuItem взятToolStripMenuItem;
-        private ToolStripMenuItem моїКнигиToolStripMenuItem;
+        private ToolStripMenuItem takeBookMenuItem;
+        private ToolStripMenuItem myBooksMenuItem;
         private ToolStripMenuItem допомогаToolStripMenuItem;
         private ToolStripMenuItem аToolStripMenuItem;
         private ToolStripMenuItem аккаунтToolStripMenuItem;

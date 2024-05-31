@@ -34,10 +34,6 @@ namespace MyFirstLibrary
 
         private void loginButton_Click(object sender, EventArgs e)
         {
-            if (!ValidateFields())
-            {
-                return;
-            }
             User? user = library.Login(userNameTextBox.Text, passwordTextBox.Text);
             if (user == null)
             {
@@ -50,22 +46,8 @@ namespace MyFirstLibrary
             Close();
         }
 
-        private bool ValidateFields()
-        {
-            if (userNameTextBox.Text.Length == 0 || passwordTextBox.Text.Length == 0)
-            {
-                MessageBox.Show("Заповніть поля", "Сталася помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
-            }
-            return true;
-        }
-
         private void registrationButton_Click(object sender, EventArgs e)
         {
-            if (!ValidateFields())
-            {
-                return;
-            }
             User? user = library.Register(userNameTextBox.Text, passwordTextBox.Text);
             if (user == null)
             {
@@ -76,6 +58,12 @@ namespace MyFirstLibrary
             library.SaveData();
             OpenMainForm = true;
             Close();
+        }
+
+        private void textBox_TextChanged(object sender, EventArgs e)
+        {
+            loginButton.Enabled = registrationButton.Enabled = 
+                userNameTextBox.Text.Length != 0 && passwordTextBox.Text.Length != 0;
         }
     }
 }

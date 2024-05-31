@@ -23,25 +23,21 @@ namespace MyFirstLibrary
 
         private void UpdateBooks()
         {
-            bookBindingSource.DataSource = library.GetUserTakenBooks(library.GetLoggedUser()!);
+            List<Book> books = library.GetUserTakenBooks(library.GetLoggedUser()!);
+            bookBindingSource.DataSource = books;
+            returnBookButton.Enabled = books.Count != 0;
         }
 
         private void returnBookButton_Click(object sender, EventArgs e)
         {
-            Book? selectedBook = bookBindingSource.Current as Book;
-            if (selectedBook == null)
-            {
-                MessageBox.Show("Книга не обрана", "Сталася помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-            DialogResult result = MessageBox.Show("Ви точно хочете повернути цю книгу?",
+            Book selectedBook = (Book)bookBindingSource.Current;
+            DialogResult result = MessageBox.Show($"Ви точно хочете повернути книгу {selectedBook.Title}?",
                 "Пітвердження", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (result == DialogResult.Yes)
             {
                 library.ReturnBook(selectedBook);
                 library.SaveData();
                 UpdateBooks();
-                MessageBox.Show("Ви успішно повернули книгу", "Успіх", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
     }

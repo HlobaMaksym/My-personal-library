@@ -42,28 +42,10 @@ namespace MyFirstLibrary.Models
 
         public bool Validate()
         {
-            if (Title.Length == 0)
-            {
-                MessageBox.Show("Назву книги не введено",
-                    "Сталася помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
-            }
-            if (Author.Length == 0)
-            {
-                MessageBox.Show("Ім'я автора книги не введено",
-                    "Сталася помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
-            }
             if (DateOfPublish > DateOnly.FromDateTime(DateTime.Now) 
                 || DateOfPublish.Year < FIRST_BOOK_PUBLISH_YEAR)
             {
                 MessageBox.Show("Дату публікації введено не вірно",
-                    "Сталася помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
-            }
-            if (PublishHouse.Length == 0)
-            {
-                MessageBox.Show("Видавництво не введено",
                     "Сталася помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }

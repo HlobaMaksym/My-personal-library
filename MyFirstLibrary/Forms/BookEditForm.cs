@@ -23,6 +23,7 @@ namespace MyFirstLibrary
             book = new Book(library.Search(bookId)[0]);
             this.library = library;
             InitializeComponent();
+            countNumericUpDown.TextChanged += textBox_TextChanged;
             SetFieldsText();
         }
         private void SetFieldsText()
@@ -47,23 +48,17 @@ namespace MyFirstLibrary
         private void saveButton_Click(object sender, EventArgs e)
         {
             UpdateBook();
-            if (countNumericUpDown.Text.Length == 0)
-            {
-                MessageBox.Show("Кількість не введено", "Сталася помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
             if (!book.Validate())
             {
                 return;
             }
             if (!library.IsUniqueBook(book))
             {
-                MessageBox.Show("Така книга вже існує", "Сталася помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Книга вже існує", "Сталася помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             library.Edit(book);
             library.SaveData();
-            MessageBox.Show("Ви успішно відредагували книгу", "Успіх", MessageBoxButtons.OK, MessageBoxIcon.Information);
             Close();
         }
 
@@ -73,6 +68,14 @@ namespace MyFirstLibrary
             {
                 e.Handled = true;
             }
+        }
+
+        private void textBox_TextChanged(object? sender, EventArgs? e)
+        {
+            saveButton.Enabled = nameTextBox.Text.Length != 0 
+                && authorTextBox.Text.Length != 0 
+                && publishHouseTextBox.Text.Length != 0 
+                && countNumericUpDown.Text.Length != 0;
         }
     }
 }

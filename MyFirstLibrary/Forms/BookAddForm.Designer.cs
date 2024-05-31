@@ -91,6 +91,7 @@
             // 
             // addButton
             // 
+            addButton.Enabled = false;
             addButton.Location = new Point(181, 179);
             addButton.Name = "addButton";
             addButton.Size = new Size(75, 23);
@@ -124,6 +125,7 @@
             publishHouseTextBox.Name = "publishHouseTextBox";
             publishHouseTextBox.Size = new Size(162, 23);
             publishHouseTextBox.TabIndex = 3;
+            publishHouseTextBox.TextChanged += textBox_TextChanged;
             // 
             // label3
             // 
@@ -150,6 +152,7 @@
             authorTextBox.Name = "authorTextBox";
             authorTextBox.Size = new Size(162, 23);
             authorTextBox.TabIndex = 1;
+            authorTextBox.TextChanged += textBox_TextChanged;
             authorTextBox.KeyPress += authorTextBox_KeyPress;
             // 
             // nameTextBox
@@ -159,6 +162,7 @@
             nameTextBox.Name = "nameTextBox";
             nameTextBox.Size = new Size(162, 23);
             nameTextBox.TabIndex = 0;
+            nameTextBox.TextChanged += textBox_TextChanged;
             // 
             // BookAddForm
             // 

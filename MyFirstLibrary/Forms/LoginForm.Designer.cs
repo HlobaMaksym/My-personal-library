@@ -64,10 +64,12 @@
             userNameTextBox.Name = "userNameTextBox";
             userNameTextBox.Size = new Size(132, 23);
             userNameTextBox.TabIndex = 0;
+            userNameTextBox.TextChanged += textBox_TextChanged;
             // 
             // loginButton
             // 
             loginButton.Anchor = AnchorStyles.None;
+            loginButton.Enabled = false;
             loginButton.Location = new Point(48, 152);
             loginButton.Name = "loginButton";
             loginButton.Size = new Size(132, 23);
@@ -79,6 +81,7 @@
             // registrationButton
             // 
             registrationButton.Anchor = AnchorStyles.None;
+            registrationButton.Enabled = false;
             registrationButton.Location = new Point(48, 181);
             registrationButton.Name = "registrationButton";
             registrationButton.Size = new Size(132, 23);
@@ -96,6 +99,7 @@
             passwordTextBox.Size = new Size(132, 23);
             passwordTextBox.TabIndex = 1;
             passwordTextBox.UseSystemPasswordChar = true;
+            passwordTextBox.TextChanged += textBox_TextChanged;
             // 
             // LoginForm
             // 
