@@ -31,7 +31,7 @@ namespace MyFirstLibrary
         private void returnBookButton_Click(object sender, EventArgs e)
         {
             Book selectedBook = (Book)bookBindingSource.Current;
-            DialogResult result = MessageBox.Show($"Ви точно хочете повернути книгу {selectedBook.Title}?",
+            DialogResult result = MessageBox.Show($"Ви точно хочете повернути книгу <<{selectedBook.Title}>>?",
                 "Пітвердження", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (result == DialogResult.Yes)
             {

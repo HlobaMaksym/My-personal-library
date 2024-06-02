@@ -14,7 +14,7 @@ namespace MyFirstLibrary
             while(true)
             {
                 LoginForm loginForm = new LoginForm();
-                Form1 form1 = new Form1();
+                MainForm form1 = new MainForm();
                 Application.Run(loginForm);
                 if (loginForm.OpenMainForm)
                 {

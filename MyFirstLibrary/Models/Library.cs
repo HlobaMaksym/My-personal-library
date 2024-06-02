@@ -81,7 +81,8 @@ namespace MyFirstLibrary.Models
         public bool IsUniqueBook(Book book)
         {
             return Books.Where(b => b.Title == book.Title && b.Author == book.Author 
-            && b.Id != book.Id && b.PublishHouse == book.PublishHouse).Count() == 0;
+            && b.Id != book.Id && b.PublishHouse == book.PublishHouse 
+            && b.DateOfPublish == book.DateOfPublish).Count() == 0;
         }
 
         public void DeleteBook(int id)

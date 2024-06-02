@@ -3,10 +3,10 @@ using MyFirstLibrary.Models;
 
 namespace MyFirstLibrary
 {
-    public partial class Form1 : Form
+    public partial class MainForm : Form
     {
         private Library library = null!;
-        public Form1()
+        public MainForm()
         {
             InitializeComponent();
         }
@@ -22,7 +22,7 @@ namespace MyFirstLibrary
             {
                 HideAdminButtons();
             }
-            nameMenuItem.Text += $" {library.GetLoggedUser()?.Name}";
+            nameMenuItem.Text += $"{library.GetLoggedUser()?.Name}";
         }
 
         private void searchButton_Click(object? sender, EventArgs? e)
@@ -41,8 +41,8 @@ namespace MyFirstLibrary
                 nameTextBox.Text, authorTextBox.Text,
                 year, publishHouseTextBox.Text);
             bookBindingSource.DataSource = books;
-            editButton.Enabled = removeButton.Enabled = takeButton.Enabled = 
-                editBookMenuItem.Enabled = deleteBookMenuItem.Enabled = 
+            editButton.Enabled = removeButton.Enabled = takeButton.Enabled =
+                editBookMenuItem.Enabled = removeBookMenuItem.Enabled =
                 takeBookMenuItem.Enabled = books.Count != 0;
             if (books.Count == 0 && sender != null)
             {
@@ -81,7 +81,7 @@ namespace MyFirstLibrary
                     "Сталася помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            DialogResult result = MessageBox.Show("Ви точно хочете видалити цю книгу?",
+            DialogResult result = MessageBox.Show($"Ви точно хочете видалити книгу <<{selectedBook.Title}>>?",
                 "Пітвердження", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (result == DialogResult.Yes)
             {
@@ -102,11 +102,11 @@ namespace MyFirstLibrary
             }
             if (library.GetLoggedUser()?.IsBookTaken(selectedBook.Id) == true)
             {
-                MessageBox.Show("Ви не можете взяти більше одного примірника цієї книги",
+                MessageBox.Show($"Ви не можете взяти більше одного примірника цієї книги",
                     "Сталася помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            DialogResult result = MessageBox.Show("Ви точно хочете взяти цю книгу?",
+            DialogResult result = MessageBox.Show($"Ви точно хочете взяти книгу <<{selectedBook.Title}>>?",
                 "Пітвердження", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (result == DialogResult.Yes)
             {
@@ -144,7 +144,7 @@ namespace MyFirstLibrary
             editButton.Visible = false;
             removeButton.Visible = false;
             addBookMenuItem.Visible = false;
-            deleteBookMenuItem.Visible = false;
+            removeBookMenuItem.Visible = false;
             editBookMenuItem.Visible = false;
             resultsDataGridView.Left = (ClientSize.Width - resultsDataGridView.Width) / 2;
             takeButton.Left = (ClientSize.Width - takeButton.Width) / 2;
@@ -160,6 +160,16 @@ namespace MyFirstLibrary
             if (e.KeyChar == (char)Keys.Delete || Book.REGEX.IsMatch(e.KeyChar.ToString()))
             {
                 e.Handled = true;
+            }
+        }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("Ви точно хочете вийти з програми?",
+                "Пітвердження", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
+            {
+                Close();
             }
         }
     }

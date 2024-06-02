@@ -2,7 +2,7 @@
 
 namespace MyFirstLibrary
 {
-    partial class Form1
+    partial class MainForm
     {
         /// <summary>
         ///  Required designer variable.
@@ -49,12 +49,14 @@ namespace MyFirstLibrary
             editButton = new Button();
             takeButton = new Button();
             menuStrip1 = new MenuStrip();
-            nameMenuItem = new ToolStripMenuItem();
+            файлToolStripMenuItem = new ToolStripMenuItem();
+            exitToolStripMenuItem = new ToolStripMenuItem();
             аккаунтToolStripMenuItem = new ToolStripMenuItem();
-            вийтиЗToolStripMenuItem = new ToolStripMenuItem();
+            nameMenuItem = new ToolStripMenuItem();
+            logoutMenuItem = new ToolStripMenuItem();
             книгаToolStripMenuItem = new ToolStripMenuItem();
             addBookMenuItem = new ToolStripMenuItem();
-            deleteBookMenuItem = new ToolStripMenuItem();
+            removeBookMenuItem = new ToolStripMenuItem();
             editBookMenuItem = new ToolStripMenuItem();
             takeBookMenuItem = new ToolStripMenuItem();
             myBooksMenuItem = new ToolStripMenuItem();
@@ -98,10 +100,12 @@ namespace MyFirstLibrary
             // yearNumericUpDown
             // 
             yearNumericUpDown.Location = new Point(94, 110);
-            yearNumericUpDown.Maximum = new decimal(new int[] { 10000, 0, 0, 0 });
+            yearNumericUpDown.Maximum = new decimal(new int[] { 2024, 0, 0, 0 });
+            yearNumericUpDown.Minimum = new decimal(new int[] { 1574, 0, 0, 0 });
             yearNumericUpDown.Name = "yearNumericUpDown";
             yearNumericUpDown.Size = new Size(310, 23);
             yearNumericUpDown.TabIndex = 3;
+            yearNumericUpDown.Value = new decimal(new int[] { 1574, 0, 0, 0 });
             // 
             // idNumericUpDown
             // 
@@ -242,37 +246,50 @@ namespace MyFirstLibrary
             // menuStrip1
             // 
             menuStrip1.BackColor = Color.White;
-            menuStrip1.Items.AddRange(new ToolStripItem[] { nameMenuItem, аккаунтToolStripMenuItem, книгаToolStripMenuItem, допомогаToolStripMenuItem });
+            menuStrip1.Items.AddRange(new ToolStripItem[] { файлToolStripMenuItem, аккаунтToolStripMenuItem, книгаToolStripMenuItem, допомогаToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
             menuStrip1.Size = new Size(696, 24);
             menuStrip1.TabIndex = 13;
             menuStrip1.Text = "menuStrip1";
             // 
-            // nameMenuItem
+            // файлToolStripMenuItem
             // 
-            nameMenuItem.Enabled = false;
-            nameMenuItem.Name = "nameMenuItem";
-            nameMenuItem.Size = new Size(60, 20);
-            nameMenuItem.Text = "Акаунт:";
+            файлToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { exitToolStripMenuItem });
+            файлToolStripMenuItem.Name = "файлToolStripMenuItem";
+            файлToolStripMenuItem.Size = new Size(48, 20);
+            файлToolStripMenuItem.Text = "Файл";
+            // 
+            // exitToolStripMenuItem
+            // 
+            exitToolStripMenuItem.Name = "exitToolStripMenuItem";
+            exitToolStripMenuItem.Size = new Size(173, 22);
+            exitToolStripMenuItem.Text = "Вийти з програми";
+            exitToolStripMenuItem.Click += exitToolStripMenuItem_Click;
             // 
             // аккаунтToolStripMenuItem
             // 
-            аккаунтToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { вийтиЗToolStripMenuItem });
+            аккаунтToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { nameMenuItem, logoutMenuItem });
             аккаунтToolStripMenuItem.Name = "аккаунтToolStripMenuItem";
             аккаунтToolStripMenuItem.Size = new Size(57, 20);
             аккаунтToolStripMenuItem.Text = "Акаунт";
             // 
-            // вийтиЗToolStripMenuItem
+            // nameMenuItem
             // 
-            вийтиЗToolStripMenuItem.Name = "вийтиЗToolStripMenuItem";
-            вийтиЗToolStripMenuItem.Size = new Size(107, 22);
-            вийтиЗToolStripMenuItem.Text = "Вийти";
-            вийтиЗToolStripMenuItem.Click += logoutMenuItem_Click;
+            nameMenuItem.Enabled = false;
+            nameMenuItem.Name = "nameMenuItem";
+            nameMenuItem.Size = new Size(107, 22);
+            // 
+            // logoutMenuItem
+            // 
+            logoutMenuItem.Name = "logoutMenuItem";
+            logoutMenuItem.Size = new Size(107, 22);
+            logoutMenuItem.Text = "Вийти";
+            logoutMenuItem.Click += logoutMenuItem_Click;
             // 
             // книгаToolStripMenuItem
             // 
-            книгаToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { addBookMenuItem, deleteBookMenuItem, editBookMenuItem, takeBookMenuItem, myBooksMenuItem });
+            книгаToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { addBookMenuItem, removeBookMenuItem, editBookMenuItem, takeBookMenuItem, myBooksMenuItem });
             книгаToolStripMenuItem.Name = "книгаToolStripMenuItem";
             книгаToolStripMenuItem.Size = new Size(52, 20);
             книгаToolStripMenuItem.Text = "Книги";
@@ -280,35 +297,35 @@ namespace MyFirstLibrary
             // addBookMenuItem
             // 
             addBookMenuItem.Name = "addBookMenuItem";
-            addBookMenuItem.Size = new Size(180, 22);
+            addBookMenuItem.Size = new Size(138, 22);
             addBookMenuItem.Text = "Додати";
             addBookMenuItem.Click += addButton_Click;
             // 
-            // deleteBookMenuItem
+            // removeBookMenuItem
             // 
-            deleteBookMenuItem.Name = "deleteBookMenuItem";
-            deleteBookMenuItem.Size = new Size(180, 22);
-            deleteBookMenuItem.Text = "Видалити";
-            deleteBookMenuItem.Click += removeButton_Click;
+            removeBookMenuItem.Name = "removeBookMenuItem";
+            removeBookMenuItem.Size = new Size(138, 22);
+            removeBookMenuItem.Text = "Видалити";
+            removeBookMenuItem.Click += removeButton_Click;
             // 
             // editBookMenuItem
             // 
             editBookMenuItem.Name = "editBookMenuItem";
-            editBookMenuItem.Size = new Size(180, 22);
+            editBookMenuItem.Size = new Size(138, 22);
             editBookMenuItem.Text = "Редагувати";
             editBookMenuItem.Click += editButton_Click;
             // 
             // takeBookMenuItem
             // 
             takeBookMenuItem.Name = "takeBookMenuItem";
-            takeBookMenuItem.Size = new Size(180, 22);
+            takeBookMenuItem.Size = new Size(138, 22);
             takeBookMenuItem.Text = "Взяти книгу";
             takeBookMenuItem.Click += takeButton_Click;
             // 
             // myBooksMenuItem
             // 
             myBooksMenuItem.Name = "myBooksMenuItem";
-            myBooksMenuItem.Size = new Size(180, 22);
+            myBooksMenuItem.Size = new Size(138, 22);
             myBooksMenuItem.Text = "Мої книги";
             myBooksMenuItem.Click += takenBooksMenuItem_Click;
             // 
@@ -411,7 +428,7 @@ namespace MyFirstLibrary
             MainMenuStrip = menuStrip1;
             MinimumSize = new Size(712, 489);
             Name = "Form1";
-            Text = "Form1";
+            Text = "Особиста бібліотека";
             Load += Form1_Load;
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
@@ -446,7 +463,6 @@ namespace MyFirstLibrary
         private NumericUpDown yearNumericUpDown;
         private Button takeButton;
         private MenuStrip menuStrip1;
-        private ToolStripMenuItem nameMenuItem;
         private DataGridViewTextBoxColumn countDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn publishHouseDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn dateOfPublishDataGridViewTextBoxColumn;
@@ -456,13 +472,16 @@ namespace MyFirstLibrary
         private DataGridView resultsDataGridView;
         private ToolStripMenuItem книгаToolStripMenuItem;
         private ToolStripMenuItem addBookMenuItem;
-        private ToolStripMenuItem deleteBookMenuItem;
+        private ToolStripMenuItem removeBookMenuItem;
         private ToolStripMenuItem editBookMenuItem;
         private ToolStripMenuItem takeBookMenuItem;
         private ToolStripMenuItem myBooksMenuItem;
         private ToolStripMenuItem допомогаToolStripMenuItem;
         private ToolStripMenuItem аToolStripMenuItem;
         private ToolStripMenuItem аккаунтToolStripMenuItem;
-        private ToolStripMenuItem вийтиЗToolStripMenuItem;
+        private ToolStripMenuItem logoutMenuItem;
+        private ToolStripMenuItem файлToolStripMenuItem;
+        private ToolStripMenuItem exitToolStripMenuItem;
+        private ToolStripMenuItem nameMenuItem;
     }
 }
