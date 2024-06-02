@@ -41,7 +41,7 @@ namespace MyFirstLibrary
         private Book CreateBook()
         {
             int id = library.Books.MaxBy(book => book.Id)?.Id ?? 0;
-            return new Book(id + 1, nameTextBox.Text, authorTextBox.Text, DateOnly.FromDateTime(dateOfPublishPicker.Value), publishHouseTextBox.Text, (int)countNumericUpDown.Value);
+            return new Book(id + 1, nameTextBox.Text.Trim(), authorTextBox.Text.Trim(), DateOnly.FromDateTime(dateOfPublishPicker.Value), publishHouseTextBox.Text.Trim(), (int)countNumericUpDown.Value);
         }
 
         private void authorTextBox_KeyPress(object sender, KeyPressEventArgs e)
@@ -54,9 +54,9 @@ namespace MyFirstLibrary
 
         private void textBox_TextChanged(object? sender, EventArgs? e)
         {
-            addButton.Enabled = nameTextBox.Text.Length != 0
-                && authorTextBox.Text.Length != 0
-                && publishHouseTextBox.Text.Length != 0
+            addButton.Enabled = nameTextBox.Text.Trim().Length != 0
+                && authorTextBox.Text.Trim().Length != 0
+                && publishHouseTextBox.Text.Trim().Length != 0
                 && countNumericUpDown.Text.Length != 0;
         }
     }

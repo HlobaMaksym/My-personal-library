@@ -48,7 +48,7 @@ namespace MyFirstLibrary
 
         private void registrationButton_Click(object sender, EventArgs e)
         {
-            User? user = library.Register(userNameTextBox.Text, passwordTextBox.Text);
+            User? user = library.Register(userNameTextBox.Text.Trim(), passwordTextBox.Text.Trim());
             if (user == null)
             {
                 MessageBox.Show("Таке ім'я користувача вже існує", "Сталася помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -63,7 +63,7 @@ namespace MyFirstLibrary
         private void textBox_TextChanged(object sender, EventArgs e)
         {
             loginButton.Enabled = registrationButton.Enabled = 
-                userNameTextBox.Text.Length != 0 && passwordTextBox.Text.Length != 0;
+                userNameTextBox.Text.Trim().Length != 0 && passwordTextBox.Text.Trim().Length != 0;
         }
     }
 }

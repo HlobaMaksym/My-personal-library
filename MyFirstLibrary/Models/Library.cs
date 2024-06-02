@@ -30,10 +30,10 @@ namespace MyFirstLibrary.Models
         {
             return Books.Where(book =>
                 (!id.HasValue || book.Id == id.Value) &&
-                (string.IsNullOrEmpty(title) || book.Title.Contains(title, StringComparison.OrdinalIgnoreCase))
-                && (string.IsNullOrEmpty(author) || book.Author.Contains(author, StringComparison.OrdinalIgnoreCase)) &&
+                (string.IsNullOrEmpty(title) || book.Title.Contains(title.Trim(), StringComparison.OrdinalIgnoreCase))
+                && (string.IsNullOrEmpty(author) || book.Author.Contains(author.Trim(), StringComparison.OrdinalIgnoreCase)) &&
                 (!yearOfPublish.HasValue || book.DateOfPublish.Year == yearOfPublish.Value) &&
-                (string.IsNullOrEmpty(publishHouse) || book.PublishHouse.Contains(publishHouse, StringComparison.OrdinalIgnoreCase))
+                (string.IsNullOrEmpty(publishHouse) || book.PublishHouse.Contains(publishHouse.Trim(), StringComparison.OrdinalIgnoreCase))
             ).OrderBy(book => book.Title).ToList();
         }
 

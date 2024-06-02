@@ -72,10 +72,10 @@ namespace MyFirstLibrary
 
         private void textBox_TextChanged(object? sender, EventArgs? e)
         {
-            saveButton.Enabled = nameTextBox.Text.Length != 0 
-                && authorTextBox.Text.Length != 0 
-                && publishHouseTextBox.Text.Length != 0 
-                && countNumericUpDown.Text.Length != 0;
+            saveButton.Enabled = nameTextBox.Text.Trim().Length != 0 
+                && authorTextBox.Text.Trim().Length != 0 
+                && publishHouseTextBox.Text.Trim().Length != 0 
+                && countNumericUpDown.Text.Trim().Length != 0;
         }
     }
 }
